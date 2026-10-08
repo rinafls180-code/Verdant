@@ -1,0 +1,2 @@
+# Verdant
+Verdant Student Magazine
