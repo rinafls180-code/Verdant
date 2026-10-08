@@ -1,1 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdant | Student Magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #f8f6f0;
+      --bg-surface: #ffffff;
+      --text-main: #1a241e;
+      --text-muted: #5a655d;
+      --accent-green: #2d5a27;
+      --accent-hover: #1b3a18;
+      --accent-light: #e8efe6;
+      --border-color: #d8e0d5;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
+      --font-title: 'Cinzel', serif;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #121814;
+      --bg-surface: #1a221c;
+      --text-main: #e8efe6;
+      --text-muted: #94a397;
+      --accent-green: #528a4c;
+      --accent-hover: #69a762;
+      --accent-light: #223024;
+      --border-color: #2c3a2e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--bg-surface);
+      border-bottom: 2px solid var(--border-color);
+      padding: 2rem 1rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .date-badge {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-light);
+      border-color: var(--accent-green);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-green);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: white;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--accent-green);
+      text-align: center;
+      margin: 0.5rem 0;
+      text-decoration: none;
+    }
+
+    .tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    nav {
+      width: 100%;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      color: var(--accent-green);
+      border-bottom: 2px solid var(--accent-green);
+      padding-bottom: 2px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .featured-card {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      background: var(--bg-surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 768px) {
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+      .logo {
+        font-size: 2.5rem;
+      }
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .featured-card .card-img {
+      height: 100%;
+      min-height: 350px;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-green);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .featured-card .card-title {
+      font-size: 2.2rem;
+    }
+
+    .card-excerpt {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.75rem;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-surface);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .article-header {
+      margin-bottom: 2rem;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .article-body {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-main);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-primary);
+      color: var(--text-main);
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="top-bar">
+        <span class="date-badge" id="current-date">October 2026 Issue</span>
+        <div class="actions">
+          <button class="btn" id="theme-toggle">🌙 Dark</button>
+          <button class="btn btn-primary" onclick="openModal('submit-modal')">✍️ Submit Article</button>
+        </div>
+      </div>
+      
+      <a href="#" class="logo">VERDANT</a>
+      <div class="tagline">The Voice of Student Journalism & Creative Thought</div>
+
+      <nav>
+        <span class="nav-link active" onclick="filterCategory('All', this)">All Stories</span>
+        <span class="nav-link" onclick="filterCategory('Culture', this)">Culture</span>
+        <span class="nav-link" onclick="filterCategory('Opinion', this)">Opinion</span>
+        <span class="nav-link" onclick="filterCategory('Arts', this)">Arts & Literature</span>
+        <span class="nav-link" onclick="filterCategory('Campus', this)">Campus Life</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="articles-grid"></div>
+  </main>
+
+  <!-- Article Reader Modal -->
+  <div class="modal-overlay" id="reader-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('reader-modal')">&times;</button>
+      <div class="article-header">
+        <div class="category" id="reader-category">Culture</div>
+        <h1 class="article-title" id="reader-title">Title Here</h1>
+        <div class="card-meta">
+          <span id="reader-author">By Author</span>
+          <span id="reader-date">Date</span>
+        </div>
+      </div>
+      <div class="article-body" id="reader-body"></div>
+    </div>
+  </div>
+
+  <!-- Writer Submission Modal -->
+  <div class="modal-overlay" id="submit-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('submit-modal')">&times;</button>
+      <h2 style="font-family: var(--font-serif); margin-bottom: 1.5rem;">Submit Your Piece</h2>
+      <form id="submission-form">
+        <div class="form-group">
+          <label for="author">Your Name</label>
+          <input type="text" id="author" required placeholder="e.g., Alex Rivers">
+        </div>
+        <div class="form-group">
+          <label for="title">Article Title</label>
+          <input type="text" id="title" required placeholder="Catchy title...">
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="Culture">Culture</option>
+            <option value="Opinion">Opinion</option>
+            <option value="Arts">Arts & Literature</option>
+            <option value="Campus">Campus Life</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="image">Cover Image URL (Optional)</label>
+          <input type="url" id="image" placeholder="https://images.unsplash.com/...">
+        </div>
+        <div class="form-group">
+          <label for="content">Article Content</label>
+          <textarea id="content" required placeholder="Write or paste your submission here..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Publish Story</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const defaultArticles = [
+      {
+        id: 1,
+        title: "The Architecture of Quiet Places on Campus",
+        category: "Campus",
+        author: "Elena Rostova",
+        date: "Oct 6, 2026",
+        image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Exploring the hidden nooks, ancient library stacks, and forgotten courtyards where solitude thrives amid student life.",
+        content: "In a world built on constant connectedness, silence has become the ultimate luxury on campus. From the sunlit alcoves on the 4th floor of the science library to the overgrown rose garden behind the music hall, students are rediscovering the power of quiet spaces to restore creativity and calm."
+      },
+      {
+        id: 2,
+        title: "Digital Nostalgia: Why We Want Physical Media Back",
+        category: "Culture",
+        author: "Marcus Chen",
+        date: "Oct 4, 2026",
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Vinyl records, film cameras, and paper magazines are making an unprecedented comeback among Generation Z.",
+        content: "Streaming offers infinity, but vinyl offers tangible presence. The shift back toward physical art forms isn't just about vintage aesthetics—it's a conscious rebellion against algorithmic curation and ownership that can disappear at the click of a button."
+      },
+      {
+        id: 3,
+        title: "Poetry in Autumn: Three Selected Sonnets",
+        category: "Arts",
+        author: "Sophia Sterling",
+        date: "Sep 28, 2026",
+        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Reflections on changing leaves, crisp morning frost, and the passage of academic semesters.",
+        content: "Leaves turn to amber under golden light / A quiet murmur echoes through the quad / We trace our footsteps into falling night / And marvel at the paths where giants trod."
+      }
+    ];
+
+    let articles = JSON.parse(localStorage.getItem('verdant_articles')) || defaultArticles;
+
+    function renderArticles(items) {
+      const grid = document.getElementById('articles-grid');
+      grid.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const isFeatured = index === 0;
+        const card = document.createElement('div');
+        card.className = isFeatured ? 'featured-card' : 'card';
+        card.onclick = () => openReader(item.id);
+
+        card.innerHTML = `
+          <img src="${item.image || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80'}" class="card-img" alt="${item.title}">
+          <div class="card-content">
+            <div class="category">${item.category}</div>
+            <h2 class="card-title">${item.title}</h2>
+            <p class="card-excerpt">${item.excerpt}</p>
+            <div class="card-meta">
+              <span>By ${item.author}</span>
+              <span>${item.date}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(category, el) {
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      if(el) el.classList.add('active');
+
+      if (category === 'All') {
+        renderArticles(articles);
+      } else {
+        const filtered = articles.filter(a => a.category === category);
+        renderArticles(filtered);
+      }
+    }
+
+    function openReader(id) {
+      const article = articles.find(a => a.id === id);
+      if (!article) return;
+
+      document.getElementById('reader-category').innerText = article.category;
+      document.getElementById('reader-title').innerText = article.title;
+      document.getElementById('reader-author').innerText = `By ${article.author}`;
+      document.getElementById('reader-date').innerText = article.date;
+      document.getElementById('reader-body').innerText = article.content;
+
+      openModal('reader-modal');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    // Handle Form Submit
+    document.getElementById('submission-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const newArticle = {
+        id: Date.now(),
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        category: document.getElementById('category').value,
+        image: document.getElementById('image').value,
+        content: document.getElementById('content').value,
+        excerpt: document.getElementById('content').value.substring(0, 110) + '...',
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      };
+
+      articles.unshift(newArticle);
+      localStorage.setItem('verdant_articles', JSON.stringify(articles));
+      renderArticles(articles);
+
+      closeModal('submit-modal');
+      e.target.reset();
+    });
+
+    // Dark Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        themeToggle.innerText = '🌙 Dark';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggle.innerText = '☀️ Light';
+      }
+    });
+
+    // Initialize
+    renderArticles(articles);
+  </script>
+</body>
+</html>
 
