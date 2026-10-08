@@ -10,37 +10,45 @@
   
   <style>
     :root {
+      /* Light Theme Variables */
       --bg-primary: #f8f6f0;
       --bg-surface: #ffffff;
+      --bg-card: #ffffff;
       --text-main: #1a241e;
       --text-muted: #5a655d;
       --accent-green: #2d5a27;
       --accent-hover: #1b3a18;
       --accent-light: #e8efe6;
+      --accent-glow: rgba(45, 90, 39, 0.15);
       --border-color: #d8e0d5;
       --shadow: 0 10px 30px rgba(0,0,0,0.05);
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.04);
       --font-title: 'Cinzel', serif;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Inter', sans-serif;
     }
 
+    /* Refined, Cohesive Dark Theme */
     [data-theme="dark"] {
-      --bg-primary: #121814;
-      --bg-surface: #1a221c;
-      --text-main: #e8efe6;
-      --text-muted: #94a397;
-      --accent-green: #528a4c;
-      --accent-hover: #69a762;
-      --accent-light: #223024;
-      --border-color: #2c3a2e;
-      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      --bg-primary: #0f1411;
+      --bg-surface: #151d17;
+      --bg-card: #1a241d;
+      --text-main: #f0f4f1;
+      --text-muted: #9ab09e;
+      --accent-green: #4ade80;
+      --accent-hover: #22c55e;
+      --accent-light: #1c2e21;
+      --accent-glow: rgba(74, 222, 128, 0.2);
+      --border-color: #27382a;
+      --shadow: 0 12px 35px rgba(0,0,0,0.45);
+      --card-shadow: 0 6px 24px rgba(0,0,0,0.3);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     body {
@@ -53,11 +61,12 @@
 
     header {
       background-color: var(--bg-surface);
-      border-bottom: 2px solid var(--border-color);
-      padding: 2rem 1rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.75rem 1rem 1rem;
       position: sticky;
       top: 0;
       z-index: 100;
+      backdrop-filter: blur(10px);
     }
 
     .header-container {
@@ -77,10 +86,11 @@
     }
 
     .date-badge {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     .actions {
@@ -89,10 +99,10 @@
     }
 
     .btn {
-      background: transparent;
+      background: var(--bg-surface);
       border: 1px solid var(--border-color);
       color: var(--text-main);
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.1rem;
       border-radius: 20px;
       cursor: pointer;
       font-size: 0.85rem;
@@ -105,28 +115,32 @@
     .btn:hover {
       background-color: var(--accent-light);
       border-color: var(--accent-green);
+      color: var(--accent-green);
     }
 
     .btn-primary {
       background-color: var(--accent-green);
-      color: white;
+      color: #0b120c;
+      font-weight: 600;
       border: none;
     }
 
     .btn-primary:hover {
       background-color: var(--accent-hover);
-      color: white;
+      color: #ffffff;
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
     .logo {
       font-family: var(--font-title);
       font-size: 3.5rem;
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 6px;
       color: var(--accent-green);
       text-align: center;
-      margin: 0.5rem 0;
+      margin: 0.2rem 0;
       text-decoration: none;
+      text-shadow: 0 0 20px var(--accent-glow);
     }
 
     .tagline {
@@ -134,6 +148,7 @@
       font-style: italic;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
+      font-size: 1rem;
     }
 
     nav {
@@ -149,17 +164,18 @@
     .nav-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       font-weight: 600;
       cursor: pointer;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
     }
 
     .nav-link.active, .nav-link:hover {
       color: var(--accent-green);
-      border-bottom: 2px solid var(--accent-green);
-      padding-bottom: 2px;
+      border-bottom-color: var(--accent-green);
     }
 
     main {
@@ -179,11 +195,11 @@
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 2rem;
-      background: var(--bg-surface);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
+      box-shadow: var(--card-shadow);
     }
 
     @media (max-width: 768px) {
@@ -196,18 +212,20 @@
     }
 
     .card {
-      background: var(--bg-surface);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      box-shadow: var(--card-shadow);
     }
 
-    .card:hover {
+    .card:hover, .featured-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow);
+      border-color: var(--accent-green);
+      box-shadow: var(--shadow), 0 0 20px var(--accent-glow);
     }
 
     .card-img {
@@ -222,7 +240,7 @@
     }
 
     .card-content {
-      padding: 1.5rem;
+      padding: 1.75rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -231,17 +249,18 @@
     .category {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       color: var(--accent-green);
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 0.5rem;
     }
 
     .card-title {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       margin-bottom: 0.75rem;
       color: var(--text-main);
+      line-height: 1.35;
     }
 
     .featured-card .card-title {
@@ -261,17 +280,17 @@
       font-size: 0.8rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-color);
-      padding-top: 0.75rem;
+      padding-top: 0.85rem;
     }
 
-    /* Modals */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -289,20 +308,33 @@
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 2.5rem;
       position: relative;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
     }
 
     .modal-close {
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
       color: var(--text-muted);
       cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--text-main);
+      border-color: var(--accent-green);
     }
 
     .article-header {
@@ -311,19 +343,20 @@
 
     .article-title {
       font-family: var(--font-serif);
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       margin: 0.5rem 0;
+      line-height: 1.3;
     }
 
     .article-body {
       font-family: var(--font-serif);
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1.12rem;
+      line-height: 1.85;
       color: var(--text-main);
     }
 
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.25rem;
     }
 
     .form-group label {
@@ -331,21 +364,56 @@
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 0.4rem;
+      color: var(--text-main);
     }
 
     .form-group input, .form-group select, .form-group textarea {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.85rem;
       border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border-radius: 8px;
       background: var(--bg-primary);
       color: var(--text-main);
       font-family: inherit;
     }
 
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
     .form-group textarea {
       height: 150px;
       resize: vertical;
+    }
+
+    /* Interactive Box Containers */
+    .interactive-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1.2rem;
+      border-radius: 8px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .quiz-option-btn:hover {
+      border-color: var(--accent-green);
+      background: var(--accent-light);
     }
   </style>
 </head>
@@ -381,12 +449,12 @@
     <div class="grid" id="articles-grid"></div>
 
     <!-- Interactive Ideas Section -->
-    <div id="ideas-container" style="display: none; max-width: 800px; margin: 0 auto; background: var(--bg-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
-      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem;">💡 Campus Ideas & Solutions</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">"Here's what we could do next." Got an idea to improve campus sustainability or engineering life? Submit it below!</p>
+    <div id="ideas-container" class="interactive-box" style="display: none;">
+      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem; font-size: 1.8rem;">💡 Campus Ideas & Solutions</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">"Here's what we could do next." Got an idea to improve campus sustainability or engineering life? Submit it below!</p>
       
       <div style="display: flex; gap: 10px; margin-bottom: 2rem;">
-        <input type="text" id="idea-input" placeholder="e.g., Low-cost recycling station behind the campus center..." style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-primary); color: var(--text-main);">
+        <input type="text" id="idea-input" placeholder="e.g., Low-cost recycling station behind the quad..." style="flex: 1; padding: 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-primary); color: var(--text-main);">
         <button class="btn btn-primary" onclick="addIdea()">Submit Idea</button>
       </div>
 
@@ -394,19 +462,19 @@
     </div>
 
     <!-- Interactive Fun & Trivia Section -->
-    <div id="fun-container" style="display: none; max-width: 800px; margin: 0 auto; background: var(--bg-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
-      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem;">🎲 Fun, Quizzes & Puzzles</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">"Stuff to make the magazine actually fun." Test your knowledge with this week's trivia!</p>
+    <div id="fun-container" class="interactive-box" style="display: none;">
+      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem; font-size: 1.8rem;">🎲 Fun, Quizzes & Puzzles</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">"Stuff to make the magazine actually fun." Test your knowledge with this week's trivia!</p>
 
-      <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Weekly STEM Trivia: Which renewable energy source currently produces the most electricity worldwide?</h3>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;" id="quiz-options">
-          <button class="btn" onclick="checkQuiz(this, false)">A) Solar Power</button>
-          <button class="btn" onclick="checkQuiz(this, false)">B) Wind Energy</button>
-          <button class="btn" onclick="checkQuiz(this, true)">C) Hydropower</button>
-          <button class="btn" onclick="checkQuiz(this, false)">D) Geothermal</button>
+      <div style="background: var(--bg-primary); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-color);">
+        <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; font-family: var(--font-serif);">Weekly STEM Trivia: Which renewable energy source currently produces the most electricity worldwide?</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;" id="quiz-options">
+          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">A) Solar Power</button>
+          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">B) Wind Energy</button>
+          <button class="quiz-option-btn" onclick="checkQuiz(this, true)">C) Hydropower</button>
+          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">D) Geothermal</button>
         </div>
-        <p id="quiz-result" style="margin-top: 1rem; font-weight: 600; font-size: 0.95rem;"></p>
+        <p id="quiz-result" style="margin-top: 1.25rem; font-weight: 600; font-size: 0.95rem;"></p>
       </div>
     </div>
   </main>
@@ -431,7 +499,7 @@
   <div class="modal-overlay" id="submit-modal">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('submit-modal')">&times;</button>
-      <h2 style="font-family: var(--font-serif); margin-bottom: 1.5rem;">Submit Your Piece</h2>
+      <h2 style="font-family: var(--font-serif); margin-bottom: 1.5rem; color: var(--accent-green);">Submit Your Piece</h2>
       <form id="submission-form">
         <div class="form-group">
           <label for="author">Your Name</label>
@@ -460,7 +528,7 @@
           <label for="content">Article Content</label>
           <textarea id="content" required placeholder="Write or paste your submission here..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Publish Story</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem; justify-content: center;">Publish Story</button>
       </form>
     </div>
   </div>
@@ -576,7 +644,7 @@
       list.innerHTML = '';
       savedIdeas.forEach((idea) => {
         const item = document.createElement('div');
-        item.style.cssText = 'padding: 1rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.95rem;';
+        item.style.cssText = 'padding: 1.1rem; background: var(--bg-primary); border-radius: 10px; border: 1px solid var(--border-color); font-size: 0.98rem; color: var(--text-main);';
         item.innerHTML = `💡 ${idea}`;
         list.appendChild(item);
       });
@@ -595,15 +663,25 @@
     // Quiz logic
     function checkQuiz(btn, isCorrect) {
       const result = document.getElementById('quiz-result');
+      const allButtons = document.querySelectorAll('.quiz-option-btn');
+      
+      allButtons.forEach(b => {
+        b.style.backgroundColor = 'var(--bg-primary)';
+        b.style.borderColor = 'var(--border-color)';
+        b.style.color = 'var(--text-main)';
+      });
+
       if (isCorrect) {
-        btn.style.backgroundColor = '#d4edda';
-        btn.style.borderColor = '#28a745';
-        result.style.color = '#28a745';
+        btn.style.backgroundColor = 'rgba(74, 222, 128, 0.15)';
+        btn.style.borderColor = 'var(--accent-green)';
+        btn.style.color = 'var(--accent-green)';
+        result.style.color = 'var(--accent-green)';
         result.innerText = '🎉 Correct! Hydropower accounts for the largest share of global renewable electricity.';
       } else {
-        btn.style.backgroundColor = '#f8d7da';
-        btn.style.borderColor = '#dc3545';
-        result.style.color = '#dc3545';
+        btn.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+        btn.style.borderColor = '#ef4444';
+        btn.style.color = '#f87171';
+        result.style.color = '#f87171';
         result.innerText = '❌ Try again!';
       }
     }
