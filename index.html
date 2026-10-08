@@ -366,10 +366,12 @@
 
       <nav>
         <span class="nav-link active" onclick="filterCategory('All', this)">All Stories</span>
-        <span class="nav-link" onclick="filterCategory('Culture', this)">Culture</span>
-        <span class="nav-link" onclick="filterCategory('Opinion', this)">Opinion</span>
-        <span class="nav-link" onclick="filterCategory('Arts', this)">Arts & Literature</span>
-        <span class="nav-link" onclick="filterCategory('Campus', this)">Campus Life</span>
+        <span class="nav-link" onclick="filterCategory('Engineering & Innovation', this)">Engineering & Innovation</span>
+        <span class="nav-link" onclick="filterCategory('Sustainability', this)">Sustainability</span>
+        <span class="nav-link" onclick="filterCategory('Research', this)">Research</span>
+        <span class="nav-link" onclick="filterCategory('Student Spotlight', this)">Student Spotlight</span>
+        <span class="nav-link" onclick="filterCategory('Ideas', this)">Ideas</span>
+        <span class="nav-link" onclick="filterCategory('Fun', this)">Fun</span>
       </nav>
     </div>
   </header>
@@ -411,10 +413,12 @@
         <div class="form-group">
           <label for="category">Category</label>
           <select id="category">
-            <option value="Culture">Culture</option>
-            <option value="Opinion">Opinion</option>
-            <option value="Arts">Arts & Literature</option>
-            <option value="Campus">Campus Life</option>
+            <option value="Engineering & Innovation">Engineering & Innovation</option>
+            <option value="Sustainability">Sustainability</option>
+            <option value="Research">Research</option>
+            <option value="Student Spotlight">Student Spotlight</option>
+            <option value="Ideas">Ideas</option>
+            <option value="Fun">Fun</option>
           </select>
         </div>
         <div class="form-group">
@@ -434,33 +438,33 @@
     const defaultArticles = [
       {
         id: 1,
-        title: "The Architecture of Quiet Places on Campus",
-        category: "Campus",
-        author: "Elena Rostova",
-        date: "Oct 6, 2026",
-        image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Exploring the hidden nooks, ancient library stacks, and forgotten courtyards where solitude thrives amid student life.",
-        content: "In a world built on constant connectedness, silence has become the ultimate luxury on campus. From the sunlit alcoves on the 4th floor of the science library to the overgrown rose garden behind the music hall, students are rediscovering the power of quiet spaces to restore creativity and calm."
+        title: "Campus Smart Grid: How Students Built a Solar Microcontroller",
+        category: "Engineering & Innovation",
+        author: "STEM Team #1",
+        date: "Oct 8, 2026",
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Inside the engineering lab prototype aiming to reduce energy waste across campus dorms.",
+        content: "Students from the engineering department have successfully deployed a low-cost IoT microcontroller capable of tracking real-time energy usage..."
       },
       {
         id: 2,
-        title: "Digital Nostalgia: Why We Want Physical Media Back",
-        category: "Culture",
-        author: "Marcus Chen",
-        date: "Oct 4, 2026",
-        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Vinyl records, film cameras, and paper magazines are making an unprecedented comeback among Generation Z.",
-        content: "Streaming offers infinity, but vinyl offers tangible presence. The shift back toward physical art forms isn't just about vintage aesthetics—it's a conscious rebellion against algorithmic curation and ownership that can disappear at the click of a button."
+        title: "Miami Coastal Preservation & Campus Sustainability Initiatives",
+        category: "Sustainability",
+        author: "STEM Team #2",
+        date: "Oct 7, 2026",
+        image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Addressing local climate challenges, transportation, and waste management on campus.",
+        content: "With sea levels rising and campus waste increasing, the sustainability team looks at actionable steps students can take right now..."
       },
       {
         id: 3,
-        title: "Poetry in Autumn: Three Selected Sonnets",
-        category: "Arts",
-        author: "Sophia Sterling",
-        date: "Sep 28, 2026",
-        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Reflections on changing leaves, crisp morning frost, and the passage of academic semesters.",
-        content: "Leaves turn to amber under golden light / A quiet murmur echoes through the quad / We trace our footsteps into falling night / And marvel at the paths where giants trod."
+        title: "Demystifying Professor Research: Breakthroughs in Bio-Tech",
+        category: "Research",
+        author: "Business Major",
+        date: "Oct 5, 2026",
+        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+        excerpt: "Translating complex academic literature and interviews into clear, understandable insights.",
+        content: "We sat down with campus researchers to understand how recent biochemical discoveries will impact real-world medicine over the next decade..."
       }
     ];
 
