@@ -1,54 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f6f0" />
   <title>Verdant | Student Magazine</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
-      /* Light Theme Variables */
       --bg-primary: #f8f6f0;
       --bg-surface: #ffffff;
-      --bg-card: #ffffff;
       --text-main: #1a241e;
       --text-muted: #5a655d;
       --accent-green: #2d5a27;
       --accent-hover: #1b3a18;
       --accent-light: #e8efe6;
-      --accent-glow: rgba(45, 90, 39, 0.15);
       --border-color: #d8e0d5;
       --shadow: 0 10px 30px rgba(0,0,0,0.05);
-      --card-shadow: 0 4px 20px rgba(0,0,0,0.04);
       --font-title: 'Cinzel', serif;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Inter', sans-serif;
     }
 
-    /* Refined, Cohesive Dark Theme */
     [data-theme="dark"] {
-      --bg-primary: #0f1411;
-      --bg-surface: #151d17;
-      --bg-card: #1a241d;
-      --text-main: #f0f4f1;
-      --text-muted: #9ab09e;
-      --accent-green: #4ade80;
-      --accent-hover: #22c55e;
+      --bg-primary: #0b110d;
+      --bg-surface: #131d16;
+      --text-main: #f0f5f1;
+      --text-muted: #a1b0a4;
+      --accent-green: #48a040;
+      --accent-hover: #5ec054;
       --accent-light: #1c2e21;
-      --accent-glow: rgba(74, 222, 128, 0.2);
-      --border-color: #27382a;
-      --shadow: 0 12px 35px rgba(0,0,0,0.45);
-      --card-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      --border-color: #26382a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -57,16 +55,24 @@
       font-family: var(--font-sans);
       line-height: 1.6;
       padding-bottom: 60px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     header {
       background-color: var(--bg-surface);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1.75rem 1rem 1rem;
+      border-bottom: 2px solid var(--border-color);
+      padding: 1.5rem 1rem 1rem;
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(10px);
     }
 
     .header-container {
@@ -82,15 +88,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       margin-bottom: 1rem;
     }
 
     .date-badge {
       font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       color: var(--text-muted);
-      font-weight: 500;
     }
 
     .actions {
@@ -99,48 +105,46 @@
     }
 
     .btn {
-      background: var(--bg-surface);
+      background: transparent;
       border: 1px solid var(--border-color);
       color: var(--text-main);
-      padding: 0.5rem 1.1rem;
+      padding: 0.55rem 1rem;
       border-radius: 20px;
       cursor: pointer;
       font-size: 0.85rem;
       font-weight: 500;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
+      text-decoration: none;
     }
 
     .btn:hover {
       background-color: var(--accent-light);
       border-color: var(--accent-green);
-      color: var(--accent-green);
     }
 
     .btn-primary {
       background-color: var(--accent-green);
-      color: #0b120c;
-      font-weight: 600;
-      border: none;
+      color: white;
+      border: 1px solid var(--accent-green);
     }
 
     .btn-primary:hover {
       background-color: var(--accent-hover);
-      color: #ffffff;
-      box-shadow: 0 0 15px var(--accent-glow);
+      color: white;
     }
 
     .logo {
       font-family: var(--font-title);
       font-size: 3.5rem;
       font-weight: 900;
-      letter-spacing: 6px;
+      letter-spacing: 4px;
       color: var(--accent-green);
       text-align: center;
-      margin: 0.2rem 0;
+      margin: 0.5rem 0;
       text-decoration: none;
-      text-shadow: 0 0 20px var(--accent-glow);
     }
 
     .tagline {
@@ -148,7 +152,7 @@
       font-style: italic;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
-      font-size: 1rem;
+      text-align: center;
     }
 
     nav {
@@ -157,23 +161,24 @@
       padding-top: 1rem;
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
     }
 
     .nav-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 0.7px;
       font-weight: 600;
       cursor: pointer;
       padding-bottom: 4px;
       border-bottom: 2px solid transparent;
     }
 
-    .nav-link.active, .nav-link:hover {
+    .nav-link.active,
+    .nav-link:hover {
       color: var(--accent-green);
       border-bottom-color: var(--accent-green);
     }
@@ -186,7 +191,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2rem;
     }
 
@@ -194,77 +199,69 @@
       grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 2rem;
-      background: var(--bg-card);
-      border-radius: 14px;
+      gap: 0;
+      background: var(--bg-surface);
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
-    }
-
-    @media (max-width: 768px) {
-      .featured-card {
-        grid-template-columns: 1fr;
-      }
-      .logo {
-        font-size: 2.5rem;
-      }
+      box-shadow: var(--shadow);
+      cursor: pointer;
     }
 
     .card {
-      background: var(--bg-card);
-      border-radius: 14px;
+      background: var(--bg-surface);
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .card:hover, .featured-card:hover {
+    .card:hover,
+    .featured-card:hover {
       transform: translateY(-4px);
-      border-color: var(--accent-green);
-      box-shadow: var(--shadow), 0 0 20px var(--accent-glow);
+      box-shadow: var(--shadow);
     }
 
     .card-img {
       width: 100%;
       height: 220px;
       object-fit: cover;
+      background: var(--accent-light);
     }
 
     .featured-card .card-img {
       height: 100%;
-      min-height: 350px;
+      min-height: 320px;
     }
 
     .card-content {
-      padding: 1.75rem;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
     .category {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       color: var(--accent-green);
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
     .card-title {
       font-family: var(--font-serif);
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       margin-bottom: 0.75rem;
       color: var(--text-main);
-      line-height: 1.35;
     }
 
     .featured-card .card-title {
-      font-size: 2.2rem;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
     }
 
     .card-excerpt {
@@ -277,20 +274,333 @@
     .card-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-color);
-      padding-top: 0.85rem;
+      padding-top: 0.75rem;
     }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-color);
+      border-radius: 12px;
+    }
+
+    /* Ideas and Fun sections */
+
+    .interactive-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      color: var(--accent-green);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .idea-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .idea-form input {
+      flex: 1 1 240px;
+      min-width: 0;
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-primary);
+      color: var(--text-main);
+    }
+
+    .idea-item {
+      padding: 1rem;
+      background: var(--bg-primary);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 0.95rem;
+      overflow-wrap: anywhere;
+    }
+
+    .quiz-box {
+      background: var(--bg-primary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .quiz-options .btn {
+      justify-content: flex-start;
+      text-align: left;
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+
+    #quiz-result {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    /* Inside ESW */
+
+    .esw-page {
+      animation: eswFadeIn 0.35s ease;
+    }
+
+    @keyframes eswFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .esw-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(2rem, 7vw, 5rem);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #173d2b, #2d5a27 65%, #658653);
+      color: #fff;
+      margin-bottom: 3rem;
+    }
+
+    .esw-hero::after {
+      content: "✳";
+      position: absolute;
+      right: 3%;
+      bottom: -65px;
+      font-size: clamp(9rem, 24vw, 19rem);
+      color: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    .esw-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent-green);
+      margin-bottom: 0.65rem;
+    }
+
+    .esw-hero .esw-eyebrow {
+      color: #d4e8c8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .esw-hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .esw-hero h1 span {
+      color: #c4df9e;
+    }
+
+    .esw-hero-copy {
+      max-width: 600px;
+      color: #eef5e9;
+      font-size: 1.05rem;
+      margin-bottom: 1.7rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .esw-hero-button {
+      display: inline-block;
+      background: #f8f6f0;
+      color: #1b3a25;
+      text-decoration: none;
+      border-radius: 30px;
+      padding: 0.8rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .esw-hero-button:hover {
+      background: #dcebd4;
+    }
+
+    .esw-section {
+      margin: 3.5rem 0;
+      scroll-margin-top: 190px;
+    }
+
+    .esw-section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .esw-section-heading h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      margin-bottom: 0.4rem;
+    }
+
+    .esw-section-heading p:not(.esw-eyebrow) {
+      color: var(--text-muted);
+    }
+
+    .esw-arrows {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .esw-track {
+      display: flex;
+      gap: 1.2rem;
+      overflow-x: auto;
+      padding: 0.25rem 0 1.2rem;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-green) transparent;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .esw-person {
+      flex: 0 0 280px;
+      min-width: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      box-shadow: var(--shadow);
+    }
+
+    .esw-portrait {
+      height: 260px;
+      background: linear-gradient(145deg, #dce9d5, #9bb795);
+      color: #24462d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .esw-portrait {
+      background: linear-gradient(145deg, #294a34, #172a1d);
+      color: #d6e9ce;
+    }
+
+    .esw-portrait span {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+    }
+
+    .esw-portrait small {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .esw-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .esw-person-info {
+      padding: 1.25rem;
+    }
+
+    .esw-person-info h3,
+    .esw-info-card h3,
+    .esw-story-note h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .esw-person-info > p:last-child,
+    .esw-info-card > p:last-child,
+    .esw-story-note p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .esw-swipe-hint {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 0.7rem;
+    }
+
+    .esw-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .esw-info-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .esw-icon {
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .esw-story-note {
+      padding: 2rem;
+      border: 1px dashed var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-surface);
+    }
+
+    /* Article reader */
 
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
+      inset: 0;
+      background: rgba(0,0,0,0.8);
       display: none;
       justify-content: center;
       align-items: center;
@@ -308,181 +618,370 @@
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      border-radius: 16px;
-      padding: 2.5rem;
+      border-radius: 12px;
+      padding: clamp(1.3rem, 5vw, 2.5rem);
       position: relative;
       border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
     }
 
     .modal-close {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
+      top: 0.8rem;
+      right: 1rem;
+      background: var(--bg-surface);
+      border: none;
+      font-size: 1.8rem;
       color: var(--text-muted);
       cursor: pointer;
-    }
-
-    .modal-close:hover {
-      color: var(--text-main);
-      border-color: var(--accent-green);
+      z-index: 2;
     }
 
     .article-header {
       margin-bottom: 2rem;
+      padding-right: 1.5rem;
     }
 
     .article-title {
       font-family: var(--font-serif);
-      font-size: 2.4rem;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       margin: 0.5rem 0;
-      line-height: 1.3;
     }
 
     .article-body {
       font-family: var(--font-serif);
-      font-size: 1.12rem;
-      line-height: 1.85;
+      font-size: 1.1rem;
+      line-height: 1.8;
       color: var(--text-main);
+      white-space: pre-line;
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
+    footer {
+      max-width: 1200px;
+      margin: 4rem auto 0;
+      padding: 1.5rem 1rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
     }
 
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: var(--text-main);
+    @media (max-width: 768px) {
+      header {
+        padding-top: 1rem;
+      }
+
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-card .card-img {
+        min-height: 220px;
+        max-height: 280px;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        gap: 0.85rem 1rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+      }
+
+      .esw-section-heading {
+        align-items: flex-start;
+      }
+
+      .esw-person {
+        flex-basis: 78%;
+      }
     }
 
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 0.85rem;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--bg-primary);
-      color: var(--text-main);
-      font-family: inherit;
+    @media (max-width: 480px) {
+      .esw-hero {
+        padding: 2rem 1.4rem;
+      }
+
+      .esw-section-heading {
+        flex-wrap: wrap;
+      }
+
+      .esw-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .esw-arrows .btn {
+        padding: 0.5rem 0.8rem;
+      }
+
+      .card-meta {
+        font-size: 0.72rem;
+      }
     }
 
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-green);
-      box-shadow: 0 0 10px var(--accent-glow);
-    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
 
-    .form-group textarea {
-      height: 150px;
-      resize: vertical;
-    }
+      .esw-track {
+        scroll-behavior: auto;
+      }
 
-    /* Interactive Box Containers */
-    .interactive-box {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--bg-surface);
-      padding: 2.5rem;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
-    }
-
-    .quiz-option-btn {
-      width: 100%;
-      text-align: left;
-      padding: 0.85rem 1.2rem;
-      border-radius: 8px;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-
-    .quiz-option-btn:hover {
-      border-color: var(--accent-green);
-      background: var(--accent-light);
+      .esw-page {
+        animation: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div class="header-container">
       <div class="top-bar">
-        <span class="date-badge" id="current-date">October 2026 Issue</span>
+        <span class="date-badge" id="current-date">VERDANT · STUDENT MAGAZINE</span>
         <div class="actions">
-          <button class="btn" id="theme-toggle">🌙 Dark</button>
-          <button class="btn btn-primary" onclick="openModal('submit-modal')">✍️ Submit Article</button>
+          <button class="btn" id="theme-toggle" type="button">🌙 Dark</button>
         </div>
       </div>
-      
-      <a href="#" class="logo">VERDANT</a>
+
+      <a href="#" class="logo" onclick="filterCategory('All'); return false;">VERDANT</a>
       <div class="tagline">The Voice of Student Journalism & Creative Thought</div>
 
-      <nav>
-        <span class="nav-link active" onclick="filterCategory('All', this)">All Stories</span>
-        <span class="nav-link" onclick="filterCategory('Engineering & Innovation', this)">Engineering & Innovation</span>
-        <span class="nav-link" onclick="filterCategory('Sustainability', this)">Sustainability</span>
-        <span class="nav-link" onclick="filterCategory('Research', this)">Research</span>
-        <span class="nav-link" onclick="filterCategory('Student Spotlight', this)">Student Spotlight</span>
-        <span class="nav-link" onclick="filterCategory('Ideas', this)">Ideas</span>
-        <span class="nav-link" onclick="filterCategory('Fun', this)">Fun</span>
+      <nav aria-label="Main navigation">
+        <span class="nav-link active" data-category="All" onclick="filterCategory('All', this)">All Stories</span>
+        <span class="nav-link" data-category="Engineering & Innovation" onclick="filterCategory('Engineering & Innovation', this)">Engineering & Innovation</span>
+        <span class="nav-link" data-category="Sustainability" onclick="filterCategory('Sustainability', this)">Sustainability</span>
+        <span class="nav-link" data-category="Research" onclick="filterCategory('Research', this)">Research</span>
+        <span class="nav-link" data-category="Student Spotlight" onclick="filterCategory('Student Spotlight', this)">Student Spotlight</span>
+        <span class="nav-link" data-category="Ideas" onclick="filterCategory('Ideas', this)">Ideas</span>
+        <span class="nav-link" data-category="Fun" onclick="filterCategory('Fun', this)">Fun</span>
+        <span class="nav-link" data-category="Inside ESW" onclick="filterCategory('Inside ESW', this)">Inside ESW</span>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Standard Article Cards Grid -->
+    <!-- MAGAZINE ARTICLES -->
     <div class="grid" id="articles-grid"></div>
 
-    <!-- Interactive Ideas Section -->
-    <div id="ideas-container" class="interactive-box" style="display: none;">
-      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem; font-size: 1.8rem;">💡 Campus Ideas & Solutions</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">"Here's what we could do next." Got an idea to improve campus sustainability or engineering life? Submit it below!</p>
-      
-      <div style="display: flex; gap: 10px; margin-bottom: 2rem;">
-        <input type="text" id="idea-input" placeholder="e.g., Low-cost recycling station behind the quad..." style="flex: 1; padding: 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-primary); color: var(--text-main);">
-        <button class="btn btn-primary" onclick="addIdea()">Submit Idea</button>
-      </div>
+    <!-- IDEAS -->
+    <section id="ideas-container" class="interactive-section" style="display:none;">
+      <h2 class="section-title">💡 Campus Ideas & Solutions</h2>
+      <p class="section-description">
+        Here's what we could do next. Share ideas to improve campus life,
+        engineering projects, or sustainability.
+      </p>
 
-      <div id="ideas-list" style="display: flex; flex-direction: column; gap: 1rem;"></div>
-    </div>
+      <form class="idea-form" id="idea-form">
+        <input type="text" id="idea-input" maxlength="300"
+               placeholder="e.g., Solar-powered charging benches near the courtyard..."
+               aria-label="Your campus idea" required>
+        <button class="btn btn-primary" type="submit">Submit Idea</button>
+      </form>
 
-    <!-- Interactive Fun & Trivia Section -->
-    <div id="fun-container" class="interactive-box" style="display: none;">
-      <h2 style="font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem; font-size: 1.8rem;">🎲 Fun, Quizzes & Puzzles</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">"Stuff to make the magazine actually fun." Test your knowledge with this week's trivia!</p>
+      <div id="ideas-list" style="display:flex; flex-direction:column; gap:1rem;"></div>
+      <p style="margin-top:1rem; color:var(--text-muted); font-size:.8rem;">
+        Demo note: ideas are saved in this browser only, not shared with other visitors.
+      </p>
+    </section>
 
-      <div style="background: var(--bg-primary); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-color);">
-        <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; font-family: var(--font-serif);">Weekly STEM Trivia: Which renewable energy source currently produces the most electricity worldwide?</h3>
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;" id="quiz-options">
-          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">A) Solar Power</button>
-          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">B) Wind Energy</button>
-          <button class="quiz-option-btn" onclick="checkQuiz(this, true)">C) Hydropower</button>
-          <button class="quiz-option-btn" onclick="checkQuiz(this, false)">D) Geothermal</button>
+    <!-- FUN -->
+    <section id="fun-container" class="interactive-section" style="display:none;">
+      <h2 class="section-title">🎲 Fun, Quizzes & Puzzles</h2>
+      <p class="section-description">
+        A little science, a little sustainability, and a little fun.
+        Test your knowledge with this week's trivia!
+      </p>
+
+      <div class="quiz-box">
+        <h3 style="font-size:1.1rem;">
+          Which renewable energy source produces the most electricity worldwide?
+        </h3>
+        <div class="quiz-options" id="quiz-options">
+          <button class="btn" type="button" data-correct="false">A) Solar power</button>
+          <button class="btn" type="button" data-correct="false">B) Wind energy</button>
+          <button class="btn" type="button" data-correct="true">C) Hydropower</button>
+          <button class="btn" type="button" data-correct="false">D) Geothermal energy</button>
         </div>
-        <p id="quiz-result" style="margin-top: 1.25rem; font-weight: 600; font-size: 0.95rem;"></p>
+        <p id="quiz-result" aria-live="polite"></p>
       </div>
-    </div>
+    </section>
+
+    <!-- INSIDE ESW -->
+    <section id="esw-container" class="esw-page" style="display:none;">
+
+      <div class="esw-hero">
+        <p class="esw-eyebrow">ENGINEERS FOR A SUSTAINABLE WORLD</p>
+        <h1>Inside <span>ESW</span></h1>
+        <p class="esw-hero-copy">
+          Meet the people, explore the projects, and discover the ideas
+          bringing our engineering community together.
+        </p>
+        <a href="#esw-projects" class="esw-hero-button">Explore what we're doing ↓</a>
+      </div>
+
+      <!-- E-BOARD -->
+      <section class="esw-section" id="esw-board">
+        <div class="esw-section-heading">
+          <div>
+            <p class="esw-eyebrow">THE PEOPLE BEHIND THE WORK</p>
+            <h2>Meet the E-board</h2>
+            <p>Get to know the people growing our community.</p>
+          </div>
+          <div class="esw-arrows">
+            <button class="btn" id="esw-prev" type="button" aria-label="Previous officers">←</button>
+            <button class="btn" id="esw-next" type="button" aria-label="Next officers">→</button>
+          </div>
+        </div>
+
+        <div class="esw-track" id="esw-track" aria-label="Swipe through ESW officers">
+
+          <!-- Replace these example names, roles, and initials with your real E-board details. -->
+          <article class="esw-person">
+            <div class="esw-portrait">
+              <span>JD</span>
+              <small>PHOTO COMING SOON</small>
+            </div>
+            <div class="esw-person-info">
+              <p class="category">PRESIDENT</p>
+              <h3>Officer Name</h3>
+              <p>Add a short introduction about this officer.</p>
+            </div>
+          </article>
+
+          <article class="esw-person">
+            <div class="esw-portrait">
+              <span>AB</span>
+              <small>PHOTO COMING SOON</small>
+            </div>
+            <div class="esw-person-info">
+              <p class="category">VICE PRESIDENT</p>
+              <h3>Officer Name</h3>
+              <p>Share their interests and what they contribute to ESW.</p>
+            </div>
+          </article>
+
+          <article class="esw-person">
+            <div class="esw-portrait">
+              <span>CD</span>
+              <small>PHOTO COMING SOON</small>
+            </div>
+            <div class="esw-person-info">
+              <p class="category">SECRETARY</p>
+              <h3>Officer Name</h3>
+              <p>Introduce their role and favorite part of the club.</p>
+            </div>
+          </article>
+
+          <article class="esw-person">
+            <div class="esw-portrait">
+              <span>EF</span>
+              <small>PHOTO COMING SOON</small>
+            </div>
+            <div class="esw-person-info">
+              <p class="category">OFFICER</p>
+              <h3>Officer Name</h3>
+              <p>Add a short bio and their interests.</p>
+            </div>
+          </article>
+
+        </div>
+        <p class="esw-swipe-hint">← Swipe to meet the team →</p>
+      </section>
+
+      <!-- EVENTS -->
+      <section class="esw-section" id="esw-events">
+        <div class="esw-section-heading">
+          <div>
+            <p class="esw-eyebrow">SAVE YOUR SPOT</p>
+            <h2>Events & Opportunities</h2>
+            <p>What's happening in our community.</p>
+          </div>
+        </div>
+
+        <div class="esw-info-grid">
+          <article class="esw-info-card">
+            <span class="esw-icon">📅</span>
+            <p class="category">UPCOMING EVENTS</p>
+            <h3>Stay tuned for our next event</h3>
+            <p>Meeting dates, workshops, volunteering, and activities will be announced here.</p>
+          </article>
+
+          <article class="esw-info-card">
+            <span class="esw-icon">🤝</span>
+            <p class="category">GET INVOLVED</p>
+            <h3>Find your place in ESW</h3>
+            <p>Discover opportunities to participate in projects and club activities.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="esw-section" id="esw-projects">
+        <div class="esw-section-heading">
+          <div>
+            <p class="esw-eyebrow">IDEAS INTO ACTION</p>
+            <h2>Projects & Achievements</h2>
+            <p>A growing collection of what our members accomplish.</p>
+          </div>
+        </div>
+
+        <div class="esw-info-grid">
+          <article class="esw-info-card">
+            <span class="esw-icon">🌱</span>
+            <p class="category">SUSTAINABILITY</p>
+            <h3>Our projects</h3>
+            <p>Project descriptions, photos, and results will be added as work is completed.</p>
+          </article>
+
+          <article class="esw-info-card">
+            <span class="esw-icon">⚙️</span>
+            <p class="category">ENGINEERING</p>
+            <h3>Ideas in progress</h3>
+            <p>Highlight prototypes, collaborations, and future plans.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- STORIES -->
+      <section class="esw-section" id="esw-stories">
+        <div class="esw-section-heading">
+          <div>
+            <p class="esw-eyebrow">FROM THE MAGAZINE</p>
+            <h2>ESW Stories in Verdant</h2>
+            <p>Club highlights, interviews, and stories from our community.</p>
+          </div>
+          <button class="btn btn-primary" type="button"
+                  onclick="filterCategory('Student Spotlight')">
+            Explore Student Spotlight →
+          </button>
+        </div>
+
+        <div class="esw-story-note">
+          <h3>Our story is still growing.</h3>
+          <p>
+            Published ESW articles and interviews will be featured here
+            as the magazine grows. Visit Student Spotlight for related
+            stories currently published in Verdant.
+          </p>
+        </div>
+      </section>
+
+    </section>
   </main>
 
-  <!-- Article Reader Modal -->
-  <div class="modal-overlay" id="reader-modal">
+  <!-- ARTICLE READER -->
+  <div class="modal-overlay" id="reader-modal" role="dialog"
+       aria-modal="true" aria-labelledby="reader-title"
+       onclick="if(event.target === this) closeModal('reader-modal')">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal('reader-modal')">&times;</button>
+      <button class="modal-close" type="button"
+              onclick="closeModal('reader-modal')" aria-label="Close article">&times;</button>
       <div class="article-header">
         <div class="category" id="reader-category">Category</div>
         <h1 class="article-title" id="reader-title">Title Here</h1>
@@ -495,45 +994,18 @@
     </div>
   </div>
 
-  <!-- Writer Submission Modal -->
-  <div class="modal-overlay" id="submit-modal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal('submit-modal')">&times;</button>
-      <h2 style="font-family: var(--font-serif); margin-bottom: 1.5rem; color: var(--accent-green);">Submit Your Piece</h2>
-      <form id="submission-form">
-        <div class="form-group">
-          <label for="author">Your Name</label>
-          <input type="text" id="author" required placeholder="e.g., Alex Rivers">
-        </div>
-        <div class="form-group">
-          <label for="title">Article Title</label>
-          <input type="text" id="title" required placeholder="Catchy title...">
-        </div>
-        <div class="form-group">
-          <label for="category">Category</label>
-          <select id="category">
-            <option value="Engineering & Innovation">Engineering & Innovation</option>
-            <option value="Sustainability">Sustainability</option>
-            <option value="Research">Research</option>
-            <option value="Student Spotlight">Student Spotlight</option>
-            <option value="Ideas">Ideas</option>
-            <option value="Fun">Fun</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="image">Cover Image URL (Optional)</label>
-          <input type="url" id="image" placeholder="https://images.unsplash.com/...">
-        </div>
-        <div class="form-group">
-          <label for="content">Article Content</label>
-          <textarea id="content" required placeholder="Write or paste your submission here..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem; justify-content: center;">Publish Story</button>
-      </form>
-    </div>
-  </div>
+  <footer>
+    <p>VERDANT · Student journalism, creative thought, and ideas for a greener future.</p>
+    <p style="margin-top:.4rem;">A student-led publication. Ideas grow everywhere.</p>
+  </footer>
 
   <script>
+    // ----------------------------------
+    // MAGAZINE ARTICLES
+    // These are demonstration articles.
+    // Replace them with verified stories before publication.
+    // ----------------------------------
+
     const defaultArticles = [
       {
         id: 1,
@@ -542,208 +1014,307 @@
         author: "STEM Team #1",
         date: "Oct 8, 2026",
         image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Inside the engineering lab prototype aiming to reduce energy waste across campus dorms.",
-        content: "Students from the engineering department have successfully deployed a low-cost IoT microcontroller capable of tracking real-time energy usage across lab buildings..."
+        excerpt: "Inside an example engineering prototype aiming to reduce energy waste across campus.",
+        content: "This is a demonstration article. Replace this text with a verified article from your contributors before publishing."
       },
       {
         id: 2,
-        title: "Miami Coastal Preservation & Campus Sustainability Initiatives",
+        title: "Miami Coastal Preservation & Campus Sustainability",
         category: "Sustainability",
         author: "STEM Team #2",
         date: "Oct 7, 2026",
         image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Addressing local climate challenges, transportation, and waste management on campus.",
-        content: "With sea levels rising and campus waste increasing, the sustainability team looks at actionable steps students can take right now to lower our collective carbon footprint..."
+        excerpt: "Exploring local climate challenges, transportation, and waste management on campus.",
+        content: "This is a demonstration article. Add researched facts, sources, and real examples before publication."
       },
       {
         id: 3,
-        title: "Demystifying Professor Research: Breakthroughs in Bio-Tech",
+        title: "Demystifying Research: Exploring Biotechnology",
         category: "Research",
-        author: "Business Major",
+        author: "Research Team",
         date: "Oct 5, 2026",
         image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Translating complex academic literature and interviews into clear, understandable insights.",
-        content: "We sat down with campus researchers to understand how recent biochemical discoveries will impact real-world medicine over the next decade..."
+        excerpt: "Making complex research and scientific discoveries easier to understand.",
+        content: "This is a demonstration article. Replace it with a summary of actual research and cite your sources."
       },
       {
         id: 4,
-        title: "Student Spotlight: Meet the Engineers Building Solar Cars",
+        title: "Student Spotlight: Meet the Next Generation of Engineers",
         category: "Student Spotlight",
         author: "Verdant Editor",
         date: "Oct 3, 2026",
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Here's who's doing it: highlighting student creators making waves on campus.",
-        content: "Meet the student team balancing full-time coursework while designing a solar-powered vehicle for national competition..."
+        excerpt: "Meet the students, creators, and club members making a difference across campus.",
+        content: "This is a demonstration article. Replace it with a real student interview after obtaining their permission."
       }
     ];
 
-    let articles = JSON.parse(localStorage.getItem('verdant_articles')) || defaultArticles;
+    let articles = defaultArticles;
+
+    // ----------------------------------
+    // NAVIGATION AND CATEGORY FILTERING
+    // ----------------------------------
+
+    function filterCategory(category, clickedLink) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.category === category);
+      });
+
+      const grid = document.getElementById('articles-grid');
+      const ideasBox = document.getElementById('ideas-container');
+      const funBox = document.getElementById('fun-container');
+      const eswBox = document.getElementById('esw-container');
+
+      grid.style.display = 'none';
+      ideasBox.style.display = 'none';
+      funBox.style.display = 'none';
+      eswBox.style.display = 'none';
+
+      if (category === 'Ideas') {
+        ideasBox.style.display = 'block';
+        renderIdeas();
+      } else if (category === 'Fun') {
+        funBox.style.display = 'block';
+      } else if (category === 'Inside ESW') {
+        eswBox.style.display = 'block';
+      } else {
+        grid.style.display = 'grid';
+
+        const filtered = category === 'All'
+          ? articles
+          : articles.filter(article => article.category === category);
+
+        renderArticles(filtered);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ----------------------------------
+    // ARTICLE CARDS
+    // ----------------------------------
 
     function renderArticles(items) {
       const grid = document.getElementById('articles-grid');
       grid.innerHTML = '';
 
-      items.forEach((item, index) => {
-        const isFeatured = index === 0;
-        const card = document.createElement('div');
-        card.className = isFeatured ? 'featured-card' : 'card';
-        card.onclick = () => openReader(item.id);
-
-        card.innerHTML = `
-          <img src="${item.image || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80'}" class="card-img" alt="${item.title}">
-          <div class="card-content">
-            <div class="category">${item.category}</div>
-            <h2 class="card-title">${item.title}</h2>
-            <p class="card-excerpt">${item.excerpt}</p>
-            <div class="card-meta">
-              <span>By ${item.author}</span>
-              <span>${item.date}</span>
-            </div>
+      if (!items.length) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h2 style="font-family:var(--font-serif);margin-bottom:.5rem;">
+              New stories are growing.
+            </h2>
+            <p>There are no articles in this category yet. Check back soon!</p>
           </div>
         `;
+        return;
+      }
+
+      items.forEach((item, index) => {
+        const isFeatured = index === 0;
+        const card = document.createElement('article');
+
+        card.className = isFeatured ? 'featured-card' : 'card';
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Read ${item.title}`);
+
+        const image = document.createElement('img');
+        image.src = item.image || '';
+        image.alt = '';
+        image.className = 'card-img';
+        image.loading = 'lazy';
+
+        image.onerror = function() {
+          this.style.display = 'none';
+        };
+
+        const content = document.createElement('div');
+        content.className = 'card-content';
+
+        const category = document.createElement('div');
+        category.className = 'category';
+        category.textContent = item.category;
+
+        const title = document.createElement('h2');
+        title.className = 'card-title';
+        title.textContent = item.title;
+
+        const excerpt = document.createElement('p');
+        excerpt.className = 'card-excerpt';
+        excerpt.textContent = item.excerpt;
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+
+        const author = document.createElement('span');
+        author.textContent = `By ${item.author}`;
+
+        const date = document.createElement('span');
+        date.textContent = item.date;
+
+        meta.append(author, date);
+        content.append(category, title, excerpt, meta);
+        card.append(image, content);
+
+        card.addEventListener('click', () => openReader(item.id));
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openReader(item.id);
+          }
+        });
+
         grid.appendChild(card);
       });
     }
 
-    function filterCategory(category, el) {
-      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-      if(el) el.classList.add('active');
-
-      const grid = document.getElementById('articles-grid');
-      const ideasBox = document.getElementById('ideas-container');
-      const funBox = document.getElementById('fun-container');
-
-      ideasBox.style.display = 'none';
-      funBox.style.display = 'none';
-      grid.style.display = 'grid';
-
-      if (category === 'Ideas') {
-        grid.style.display = 'none';
-        ideasBox.style.display = 'block';
-        renderIdeas();
-      } else if (category === 'Fun') {
-        grid.style.display = 'none';
-        funBox.style.display = 'block';
-      } else if (category === 'All') {
-        renderArticles(articles);
-      } else {
-        const filtered = articles.filter(a => a.category === category);
-        renderArticles(filtered);
-      }
-    }
-
-    // Ideas logic
-    let savedIdeas = JSON.parse(localStorage.getItem('verdant_ideas')) || [
-      "Could an ESW team design a low-cost recycling station behind the quad?",
-      "Reusable mug discount at the campus coffee shop.",
-      "Solar-powered charging benches near the main library."
-    ];
-
-    function renderIdeas() {
-      const list = document.getElementById('ideas-list');
-      list.innerHTML = '';
-      savedIdeas.forEach((idea) => {
-        const item = document.createElement('div');
-        item.style.cssText = 'padding: 1.1rem; background: var(--bg-primary); border-radius: 10px; border: 1px solid var(--border-color); font-size: 0.98rem; color: var(--text-main);';
-        item.innerHTML = `💡 ${idea}`;
-        list.appendChild(item);
-      });
-    }
-
-    function addIdea() {
-      const input = document.getElementById('idea-input');
-      if (input.value.trim() !== '') {
-        savedIdeas.unshift(input.value.trim());
-        localStorage.setItem('verdant_ideas', JSON.stringify(savedIdeas));
-        input.value = '';
-        renderIdeas();
-      }
-    }
-
-    // Quiz logic
-    function checkQuiz(btn, isCorrect) {
-      const result = document.getElementById('quiz-result');
-      const allButtons = document.querySelectorAll('.quiz-option-btn');
-      
-      allButtons.forEach(b => {
-        b.style.backgroundColor = 'var(--bg-primary)';
-        b.style.borderColor = 'var(--border-color)';
-        b.style.color = 'var(--text-main)';
-      });
-
-      if (isCorrect) {
-        btn.style.backgroundColor = 'rgba(74, 222, 128, 0.15)';
-        btn.style.borderColor = 'var(--accent-green)';
-        btn.style.color = 'var(--accent-green)';
-        result.style.color = 'var(--accent-green)';
-        result.innerText = '🎉 Correct! Hydropower accounts for the largest share of global renewable electricity.';
-      } else {
-        btn.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
-        btn.style.borderColor = '#ef4444';
-        btn.style.color = '#f87171';
-        result.style.color = '#f87171';
-        result.innerText = '❌ Try again!';
-      }
-    }
-
     function openReader(id) {
-      const article = articles.find(a => a.id === id);
+      const article = articles.find(item => item.id === id);
       if (!article) return;
 
-      document.getElementById('reader-category').innerText = article.category;
-      document.getElementById('reader-title').innerText = article.title;
-      document.getElementById('reader-author').innerText = `By ${article.author}`;
-      document.getElementById('reader-date').innerText = article.date;
-      document.getElementById('reader-body').innerText = article.content;
+      document.getElementById('reader-category').textContent = article.category;
+      document.getElementById('reader-title').textContent = article.title;
+      document.getElementById('reader-author').textContent = `By ${article.author}`;
+      document.getElementById('reader-date').textContent = article.date;
+      document.getElementById('reader-body').textContent = article.content;
 
       openModal('reader-modal');
     }
 
     function openModal(id) {
       document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+      document.querySelector(`#${id} .modal-close`)?.focus();
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
     }
 
-    // Handle Article Submission
-    document.getElementById('submission-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const newArticle = {
-        id: Date.now(),
-        title: document.getElementById('title').value,
-        author: document.getElementById('author').value,
-        category: document.getElementById('category').value,
-        image: document.getElementById('image').value,
-        content: document.getElementById('content').value,
-        excerpt: document.getElementById('content').value.substring(0, 110) + '...',
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-      };
-
-      articles.unshift(newArticle);
-      localStorage.setItem('verdant_articles', JSON.stringify(articles));
-      renderArticles(articles);
-
-      closeModal('submit-modal');
-      e.target.reset();
-    });
-
-    // Dark Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        document.body.removeAttribute('data-theme');
-        themeToggle.innerText = '🌙 Dark';
-      } else {
-        document.body.setAttribute('data-theme', 'dark');
-        themeToggle.innerText = '☀️ Light';
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeModal('reader-modal');
       }
     });
 
-    // Initialize Page
+    // ----------------------------------
+    // IDEAS
+    // Saved locally in the current browser.
+    // ----------------------------------
+
+    const startingIdeas = [
+      "Could an ESW team design a low-cost recycling station behind the quad?",
+      "Reusable mug discounts at the campus coffee shop.",
+      "Solar-powered charging benches near the main library."
+    ];
+
+    let savedIdeas = startingIdeas.slice();
+
+    function renderIdeas() {
+      const list = document.getElementById('ideas-list');
+      list.replaceChildren();
+
+      savedIdeas.forEach(idea => {
+        const item = document.createElement('div');
+        item.className = 'idea-item';
+        item.textContent = `💡 ${idea}`;
+        list.appendChild(item);
+      });
+    }
+
+    document.getElementById('idea-form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      const input = document.getElementById('idea-input');
+      const idea = input.value.trim();
+
+      if (!idea) return;
+
+      savedIdeas.unshift(idea);
+      input.value = '';
+      renderIdeas();
+    });
+
+    // ----------------------------------
+    // FUN QUIZ
+    // ----------------------------------
+
+    document.querySelectorAll('#quiz-options button').forEach(button => {
+      button.addEventListener('click', () => {
+        const result = document.getElementById('quiz-result');
+        const isCorrect = button.dataset.correct === 'true';
+
+        document.querySelectorAll('#quiz-options button').forEach(option => {
+          option.style.backgroundColor = '';
+          option.style.borderColor = 'var(--border-color)';
+        });
+
+        if (isCorrect) {
+          button.style.backgroundColor = 'var(--accent-light)';
+          button.style.borderColor = 'var(--accent-green)';
+          result.style.color = 'var(--accent-green)';
+          result.textContent = '🎉 Correct! Hydropower generates more electricity worldwide than any other renewable source.';
+        } else {
+          button.style.backgroundColor = 'rgba(220,53,69,0.12)';
+          button.style.borderColor = '#dc3545';
+          result.style.color = '#dc3545';
+          result.textContent = 'Not quite! Try another answer.';
+        }
+      });
+    });
+
+    // ----------------------------------
+    // E-BOARD SWIPE CAROUSEL
+    // Native touch scrolling works on phones.
+    // Buttons scroll one card at a time.
+    // ----------------------------------
+
+    const eswTrack = document.getElementById('esw-track');
+    const eswPrev = document.getElementById('esw-prev');
+    const eswNext = document.getElementById('esw-next');
+
+    function scrollESW(direction) {
+      if (!eswTrack) return;
+
+      const card = eswTrack.querySelector('.esw-person');
+      if (!card) return;
+
+      const styles = getComputedStyle(eswTrack);
+      const gap = parseFloat(styles.columnGap) || 0;
+
+      eswTrack.scrollBy({
+        left: direction * (card.getBoundingClientRect().width + gap),
+        behavior: 'smooth'
+      });
+    }
+
+    eswPrev.addEventListener('click', () => scrollESW(-1));
+    eswNext.addEventListener('click', () => scrollESW(1));
+
+    // ----------------------------------
+    // LIGHT AND DARK MODE
+    // ----------------------------------
+
+    const themeToggle = document.getElementById('theme-toggle');
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+
+      if (isDark) {
+        document.body.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙 Dark';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️ Light';
+      }
+    });
+
+    // ----------------------------------
+    // INITIALIZE
+    // ----------------------------------
+
     renderArticles(articles);
   </script>
 </body>
