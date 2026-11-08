@@ -770,25 +770,100 @@
     <div class="grid" id="articles-grid"></div>
 
     <!-- IDEAS -->
-    <section id="ideas-container" class="interactive-section" style="display:none;">
-      <h2 class="section-title">💡 Campus Ideas & Solutions</h2>
-      <p class="section-description">
-        Here's what we could do next. Share ideas to improve campus life,
-        engineering projects, or sustainability.
-      </p>
+    
+<section id="ideas" class="section">
+  <div class="section-header">
+    <span class="section-tag">GET INVOLVED</span>
+    <h2>Campus Ideas & Solutions</h2>
+    <p>
+      Have an idea that could make MDC a better place?
+      ESW wants to hear your ideas for improving campus life,
+      engineering projects, and sustainability.
+      Share practical suggestions or solutions that could
+      realistically be implemented on campus.
+    </p>
+  </div>
 
-      <form class="idea-form" id="idea-form">
-        <input type="text" id="idea-input" maxlength="300"
-               placeholder="e.g., Solar-powered charging benches near the courtyard..."
-               aria-label="Your campus idea" required>
-        <button class="btn btn-primary" type="submit">Submit Idea</button>
-      </form>
+  <div class="ideas-container">
+    <div class="ideas-icon">💡</div>
 
-      <div id="ideas-list" style="display:flex; flex-direction:column; gap:1rem;"></div>
-      <p style="margin-top:1rem; color:var(--text-muted); font-size:.8rem;">
-        Demo note: ideas are saved in this browser only, not shared with other visitors.
-      </p>
-    </section>
+    <h3>Your Idea Matters!</h3>
+
+    <p>
+      Whether it's a small campus improvement or a bigger
+      sustainability initiative, your ideas could inspire
+      real change across MDC.
+    </p>
+
+    <a
+      href="https://forms.gle/n5pYG4vRd6s4GUVE9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="ideas-button"
+    >
+      Share Your Idea <span>↗</span>
+    </a>
+
+    <p class="ideas-note">
+      Submissions are collected through our Google Form.
+    </p>
+  </div>
+</section>
+
+<style>
+  .ideas-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 45px 30px;
+    text-align: center;
+    border: 1px solid var(--border-color, #d8dfd3);
+    border-radius: 16px;
+    background: var(--card-bg, #fff);
+  }
+
+  .ideas-icon {
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+
+  .ideas-container h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .ideas-container p {
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+
+  .ideas-button {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    background: var(--accent, #496b4d);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .ideas-button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  .ideas-button span {
+    margin-left: 8px;
+  }
+
+  .ideas-container .ideas-note {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+</style>
 
     <!-- FUN -->
     <section id="fun-container" class="interactive-section" style="display:none;">
