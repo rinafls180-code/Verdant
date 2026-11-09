@@ -384,6 +384,9 @@
 
     .article-header { margin-bottom: 2rem; padding-right: 1.5rem; }
     .article-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 0.5rem 0; }
+    .article-figure { margin: 0 0 2rem; }
+    .article-figure img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 10px; display: block; background: var(--accent-light); }
+    .article-figure figcaption { color: var(--text-muted); font-size: 0.78rem; margin-top: 0.5rem; }
     .article-body { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.8; color: var(--text-main); white-space: pre-line; }
 
     footer {
@@ -754,6 +757,10 @@
           <span id="reader-date">Date</span>
         </div>
       </div>
+      <figure class="article-figure" id="reader-figure" style="display:none;">
+        <img id="reader-image" src="" alt="">
+        <figcaption id="reader-credit"></figcaption>
+      </figure>
       <div class="article-body" id="reader-body"></div>
     </div>
   </div>
@@ -766,7 +773,10 @@
   <script>
     // ----------------------------------
     // MAGAZINE ARTICLES
+    // These are demonstration articles.
+    // Replace them with verified stories before publication.
     // ----------------------------------
+
     const defaultArticles = [
       {
         id: 1,
@@ -774,7 +784,8 @@
         category: "Engineering & Innovation",
         author: "Len Hernandez",
         date: "Nov 9, 2026",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-MUy1ECeM26636od2LiFbpHTZyN2OL8CehL3SRcdIQ&s=10",
+        image: "images/self-healing-concrete.jpg",
+        imageCredit: "",
         excerpt: "As natural disasters become more frequent, civil engineers are turning to self-healing concrete using bacterial microbes to build sustainable, resilient cities.",
         content: `Abstract\n\nAs natural disasters are becoming increasingly common and frequent, Civil Engineers have developed new materials that heal themselves without human intervention, such as self-healing concrete, shape-shifting alloys and polymers, and microgrid technologies. However, self-healing concrete is the most recent invention that will become the future of modern infrastructure. New ideas for research for future civil engineers must emerge, and material resistance is a technology that must be studied.\n\nHow Does Self-Healing Concrete Work?\n\nAccording to the UK ECT: Engineering College of Technology, the self-healing concrete is an emergent material that uses embedded microcapsules of bacteria or healing agents that activate when cracks form (2025). By introducing a similar cell transferring process as Carbon Dioxide, scientists selected samples of different non-pathogenic bacteria culture called Bacillus (which has a cylindrical form, and it's mostly found in water and soil) to generate crystals that will fill cracks inside infrastructures.\n\nAfter a bacteria cultures comparison between Bacillus licheniformis and Bacillus halodurans, experts had concluded that the Bacillus halodurans demonstrates the maximum ultrasonic pulse velocity (4.6 km/s) and water absorption (1.71%), according to the data (Pooja & Tarannum, 2025). Utilizing the abilities these bacteria possess, saying fastest rate of growth, or the ultrasonic pulse velocity and water absorption, in big concentrations in our concrete, is what makes possible the effective self-healing of small cracks ranging from hairline cracks to a few hundred micrometers in width, without human intervention.\n\nWhy Was It Created?\n\nThroughout the years, humans have developed a wide variety range of materials like Fiber-Reinforced Polymers, Permeable and Reflector Pavements, Structural Steel and Shape Memory Alloys, that allow us to create better and resistant structures that maintain our well-being and secure a longer-term life cycle.\n\nNonetheless, as the environment changes and advances, the world becomes increasingly dangerous for living. Examples of these challenges include the recent earthquake in La Guaira, Venezuela, or the seismic events in Kamchatka, Russia. We are the only ones who can combat these disasters, and creating infrastructures that will resist these disasters is the first step towards a more sustainable future.\n\nWhat Is Its Positive Impact on the Engineering World?\n\nInfrastructure is one of the biggest essentials in the Engineering World. Laboratories, studios, offices, factories, aviation companies, everything is built through infrastructure. With this new material that works purely with microbes and bacteria, we are not only building safer places, but we are reducing the emissions of CO2 in the atmosphere since this type of organism consumes it (Nebula Engineering Research Center).\n\nCivil Engineers are often overlooked or find themselves with little opportunities for engagement in their careers while studying, since paths like mechanical engineering have greater opportunities due to the importance of robotics to the future. However, as the cities are growing and housing prices are rising, the only path to follow is the one of building and expanding infrastructures that resist natural disasters or similars. The technology, biology, and chemistry behind these structures will make an enormous impact on our communities.\n\nResearch based on the applications of Chemistry and Biology in the Civil Engineering career can convey bigger discoveries on science and few individuals are studying these. We can make that difference. We are the engineers of our own future.\n\nConclusions\n\nThe self-healing concrete is the first step to turn the infrastructure of our cities into auto-repairing structures that will secure the lives of the citizens, and the expansion of buildings that could act as trees, referring to their ability of processing Carbon Dioxide. Civil Engineers must start new research and open their eyes into new opportunities in their field that will bust the engagement of future students.\n\nReferences\n\nEngineering breakthroughs from 2025 that are shaping the coming decade - UK ECT: Engineering College of Technology. ECT Engineering College of Technology. (2025, December 23). https://www.ect.ac.uk/engineering-breakthroughs-shaping-the-coming-decade/\n\nNebula Engineering Research Center. (n.d.). https://nebulaerc.wpi.edu/self-healing-concrete/\n\nPooja, Km., & Tarannum, N. (2025, July 1). Self-healing concrete: A path towards advancement of sustainable infrastructure - discover applied sciences. SpringerLink. https://link.springer.com/article/10.1007/s42452-025-06529-w`
       },
@@ -784,7 +795,8 @@
         category: "Sustainability",
         author: "Genesis Barahona",
         date: "Nov 9, 2026",
-        image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
+        image: "images/miami-seawall.jpg",
+        imageCredit: "",
         excerpt: "As Miami faces environmental challenges along its coastline, 3D-printed living seawalls offer a new approach to protecting waterfront communities and marine life.",
         content: `As Miami faces environmental challenges along its coastline, 3D-printed living seawalls offer a new approach to protecting waterfront communities and marine life.
 
@@ -818,17 +830,19 @@ Sources:
         category: "Research",
         author: "Kiara Carias",
         date: "Oct 5, 2026",
-        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+        image: "images/research.jpg",
+        imageCredit: "",
         excerpt: "Making complex research and scientific discoveries easier to understand.",
         content: "This is a demonstration article. Replace it with a summary of actual research and cite your sources."
       },
       {
-        id: 1,
+        id: 4,
         title: "Student Spotlight: Samuel Montalvo Brousett – From Medicine to Genetic Engineering",
         category: "Student Spotlight",
         author: "Emilyn Hernandez",
         date: "Nov 9, 2026",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+        image: "images/samuel-montalvo.jpg",
+        imageCredit: "",
         excerpt: "Meet Samuel Montalvo Brousett, an Honors College student balancing three academic programs, leadership in ESW, and a passion for genetic engineering.",
         content: `At 26 years old, Samuel Montalvo Brousett has a pretty busy schedule. He is a second-year student at Miami Dade College's Honors College, is married, and studies Biotechnology and Biomedical Engineering. He is also the vice president of ESW and is simultaneously completing three academic programs: an AS in Biotechnology, an AA in Biomedical Engineering, and a CCC in Artificial Intelligence. When we asked him how he would introduce himself to someone who doesn't know him yet, his first reaction was to ask whether it was an academic or personal introduction. For Samuel, the answer depends on the context. In a casual conversation, he would talk about his age, his marriage, and his studies, while in a job interview, he would focus on his academic and professional experience.
 
@@ -851,8 +865,7 @@ Samuel has a pretty clear idea of where he wants to direct his next steps. In th
 For those who are just beginning their journey in Honors, Samuel has one piece of advice: define early on what they want to achieve and prepare themselves to reach their goals. He considers it important to learn how to manage stress, organize priorities, improve concentration, and develop efficient work habits. He also recognizes that each student may have different aspirations and that what matters is identifying the path they want to follow. "Don't let fear of the unknown and the difficult hold you back; you are the one you have to convince." His own experience reflects that idea. Samuel began studying medicine with the intention of becoming a surgeon, discovered new interests, moved to another country, and today continues preparing to work in genetic engineering. Although his plans have evolved, his interest in applying science to human health remains present.
 
 And to close our conversation, Samuel left a reflection directed at MDC students: "The two years at MDC go by in the blink of an eye, so make the most of your time, decide what you want to build for your future, and start working toward it today."`
-      },
-      {
+      }
     ];
 
     let articles = defaultArticles;
@@ -860,6 +873,7 @@ And to close our conversation, Samuel left a reflection directed at MDC students
     // ----------------------------------
     // NAVIGATION AND CATEGORY FILTERING
     // ----------------------------------
+
     function filterCategory(category, clickedLink) {
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.toggle('active', link.dataset.category === category);
@@ -895,8 +909,9 @@ And to close our conversation, Samuel left a reflection directed at MDC students
     }
 
     // ----------------------------------
-    // ARTICLE CARDS RENDER
+    // ARTICLE CARDS
     // ----------------------------------
+
     function renderArticles(items) {
       const grid = document.getElementById('articles-grid');
       grid.innerHTML = '';
@@ -923,30 +938,48 @@ And to close our conversation, Samuel left a reflection directed at MDC students
         card.setAttribute('aria-label', `Read ${item.title}`);
 
         const image = document.createElement('img');
-        image.className = 'card-img';
         image.src = item.image || '';
-        image.alt = item.title;
+        image.alt = '';
+        image.className = 'card-img';
+        image.loading = 'lazy';
+
+        image.onerror = function() {
+          this.style.display = 'none';
+        };
 
         const content = document.createElement('div');
         content.className = 'card-content';
-        content.innerHTML = `
-          <div class="category">${item.category}</div>
-          <h2 class="card-title">${item.title}</h2>
-          <p class="card-excerpt">${item.excerpt}</p>
-          <div class="card-meta">
-            <span>By ${item.author}</span>
-            <span>${item.date}</span>
-          </div>
-        `;
 
-        card.appendChild(image);
-        card.appendChild(content);
+        const category = document.createElement('div');
+        category.className = 'category';
+        category.textContent = item.category;
 
-        card.addEventListener('click', () => openArticle(item));
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openArticle(item);
+        const title = document.createElement('h2');
+        title.className = 'card-title';
+        title.textContent = item.title;
+
+        const excerpt = document.createElement('p');
+        excerpt.className = 'card-excerpt';
+        excerpt.textContent = item.excerpt;
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+
+        const author = document.createElement('span');
+        author.textContent = `By ${item.author}`;
+
+        const date = document.createElement('span');
+        date.textContent = item.date;
+
+        meta.append(author, date);
+        content.append(category, title, excerpt, meta);
+        card.append(image, content);
+
+        card.addEventListener('click', () => openReader(item.id));
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openReader(item.id);
           }
         });
 
@@ -954,20 +987,127 @@ And to close our conversation, Samuel left a reflection directed at MDC students
       });
     }
 
-    function openArticle(item) {
-      document.getElementById('reader-category').textContent = item.category;
-      document.getElementById('reader-title').textContent = item.title;
-      document.getElementById('reader-author').textContent = `By ${item.author}`;
-      document.getElementById('reader-date').textContent = item.date;
-      document.getElementById('reader-body').textContent = item.content;
-      document.getElementById('reader-modal').classList.add('active');
+    function openReader(id) {
+      const article = articles.find(item => item.id === id);
+      if (!article) return;
+
+      document.getElementById('reader-category').textContent = article.category;
+      document.getElementById('reader-title').textContent = article.title;
+      document.getElementById('reader-author').textContent = `By ${article.author}`;
+      document.getElementById('reader-date').textContent = article.date;
+      document.getElementById('reader-body').textContent = article.content;
+
+      const figure = document.getElementById('reader-figure');
+      const readerImage = document.getElementById('reader-image');
+      const credit = document.getElementById('reader-credit');
+      if (article.image) {
+        readerImage.onerror = () => { figure.style.display = 'none'; };
+        readerImage.src = article.image;
+        readerImage.alt = article.title;
+        credit.textContent = article.imageCredit || '';
+        figure.style.display = 'block';
+      } else {
+        figure.style.display = 'none';
+      }
+
+      openModal('reader-modal');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+      document.querySelector(`#${id} .modal-close`)?.focus();
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
     }
 
-    // Initial load
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeModal('reader-modal');
+      }
+    });
+
+    // ----------------------------------
+    // FUN QUIZ
+    // ----------------------------------
+
+    document.querySelectorAll('#quiz-options button').forEach(button => {
+      button.addEventListener('click', () => {
+        const result = document.getElementById('quiz-result');
+        const isCorrect = button.dataset.correct === 'true';
+
+        document.querySelectorAll('#quiz-options button').forEach(option => {
+          option.style.backgroundColor = '';
+          option.style.borderColor = 'var(--border-color)';
+        });
+
+        if (isCorrect) {
+          button.style.backgroundColor = 'var(--accent-light)';
+          button.style.borderColor = 'var(--accent-green)';
+          result.style.color = 'var(--accent-green)';
+          result.textContent = '🎉 Correct! Hydropower generates more electricity worldwide than any other renewable source.';
+        } else {
+          button.style.backgroundColor = 'rgba(220,53,69,0.12)';
+          button.style.borderColor = '#dc3545';
+          result.style.color = '#dc3545';
+          result.textContent = 'Not quite! Try another answer.';
+        }
+      });
+    });
+
+    // ----------------------------------
+    // E-BOARD SWIPE CAROUSEL
+    // Native touch scrolling works on phones.
+    // Buttons scroll one card at a time.
+    // ----------------------------------
+
+    const eswTrack = document.getElementById('esw-track');
+    const eswPrev = document.getElementById('esw-prev');
+    const eswNext = document.getElementById('esw-next');
+
+    function scrollESW(direction) {
+      if (!eswTrack) return;
+
+      const card = eswTrack.querySelector('.esw-person');
+      if (!card) return;
+
+      const styles = getComputedStyle(eswTrack);
+      const gap = parseFloat(styles.columnGap) || 0;
+
+      eswTrack.scrollBy({
+        left: direction * (card.getBoundingClientRect().width + gap),
+        behavior: 'smooth'
+      });
+    }
+
+    if (eswPrev) eswPrev.addEventListener('click', () => scrollESW(-1));
+    if (eswNext) eswNext.addEventListener('click', () => scrollESW(1));
+
+    // ----------------------------------
+    // LIGHT AND DARK MODE
+    // ----------------------------------
+
+    const themeToggle = document.getElementById('theme-toggle');
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+
+      if (isDark) {
+        document.body.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙 Dark';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️ Light';
+      }
+    });
+
+    // ----------------------------------
+    // INITIALIZE
+    // ----------------------------------
+
     renderArticles(articles);
   </script>
 </body>
