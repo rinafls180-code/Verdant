@@ -53,13 +53,27 @@
     button, input { font: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
 
+    /* --- AUTO-HIDE STICKY HEADER STYLES --- */
     header {
       background-color: var(--bg-surface);
       border-bottom: 2px solid var(--border-color);
       padding: 1.5rem 1rem 1rem;
-      position: sticky;
+      position: fixed; /* Fixed so it stays at the top of viewport */
       top: 0;
-      z-index: 100;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: transform 0.35s ease-in-out; /* Smooth hide/reveal animation */
+    }
+
+    /* Moves header completely out of view when scrolling down */
+    header.nav-up {
+      transform: translateY(-100%);
+    }
+
+    /* Spacer to push main content below fixed header so it doesn't overlap on initial page load */
+    .header-spacer {
+      height: 250px;
     }
 
     .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
@@ -398,6 +412,7 @@
 
     @media (max-width: 768px) {
       header { padding-top: 1rem; }
+      .header-spacer { height: 280px; }
       .featured-card { grid-template-columns: 1fr; }
       .featured-card .card-img { min-height: 220px; max-height: 280px; }
       .logo { font-size: 2.5rem; }
@@ -462,7 +477,7 @@
 
 <body>
 
-  <header>
+  <header id="site-header">
     <div class="header-container">
       <div class="top-bar">
         <span class="date-badge" id="current-date">VERDANT · STUDENT MAGAZINE</span>
@@ -486,6 +501,9 @@
       </nav>
     </div>
   </header>
+
+  <!-- Spacer to account for fixed header positioning -->
+  <div class="header-spacer"></div>
 
   <main>
     <!-- MAGAZINE ARTICLES -->
@@ -765,11 +783,34 @@
 
   <script>
     // ----------------------------------
-    // MAGAZINE ARTICLES
-    // These are demonstration articles.
-    // Replace them with verified stories before publication.
+    // SMART AUTO-HIDE HEADER LOGIC
     // ----------------------------------
+    let lastScrollTop = 0;
+    const header = document.getElementById('site-header');
+    const delta = 5; // Minimum scroll threshold before action triggers
 
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Ignore micro-scrolls smaller than the threshold
+      if (Math.abs(lastScrollTop - scrollTop) <= delta) return;
+
+      // If scrolling down and past header height -> Hide header
+      if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
+        header.classList.add('nav-up');
+      } else {
+        // If scrolling up -> Reveal header
+        if (scrollTop + window.innerHeight < document.documentElement.scrollHeight) {
+          header.classList.remove('nav-up');
+        }
+      }
+
+      lastScrollTop = scrollTop;
+    });
+
+    // ----------------------------------
+    // MAGAZINE ARTICLES
+    // ----------------------------------
     const defaultArticles = [
       {
         id: 1,
@@ -810,16 +851,6 @@
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
         excerpt: "Meet the students, creators, and club members making a difference across campus.",
         content: "This is a demonstration article. Replace it with a real student interview after obtaining their permission."
-      },
-      {
-        id: 5,
-        title: "Student Spotlight: Meet the Next Generation of Engineers",
-        category: "Student Spotlight",
-        author: "Emilyn Hernandez & Isabel Hernandez",
-        date: "Oct 3, 2026",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
-        excerpt: "Meet the students, creators, and club members making a difference across campus.",
-        content: "This is a demonstration article. Replace it with a real student interview after obtaining their permission."
       }
     ];
 
@@ -828,7 +859,6 @@
     // ----------------------------------
     // NAVIGATION AND CATEGORY FILTERING
     // ----------------------------------
-
     function filterCategory(category, clickedLink) {
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.toggle('active', link.dataset.category === category);
@@ -864,9 +894,8 @@
     }
 
     // ----------------------------------
-    // ARTICLE CARDS
+    // ARTICLE CARDS RENDER
     // ----------------------------------
-
     function renderArticles(items) {
       const grid = document.getElementById('articles-grid');
       grid.innerHTML = '';
@@ -893,48 +922,30 @@
         card.setAttribute('aria-label', `Read ${item.title}`);
 
         const image = document.createElement('img');
-        image.src = item.image || '';
-        image.alt = '';
         image.className = 'card-img';
-        image.loading = 'lazy';
-
-        image.onerror = function() {
-          this.style.display = 'none';
-        };
+        image.src = item.image || '';
+        image.alt = item.title;
 
         const content = document.createElement('div');
         content.className = 'card-content';
+        content.innerHTML = `
+          <div class="category">${item.category}</div>
+          <h2 class="card-title">${item.title}</h2>
+          <p class="card-excerpt">${item.excerpt}</p>
+          <div class="card-meta">
+            <span>By ${item.author}</span>
+            <span>${item.date}</span>
+          </div>
+        `;
 
-        const category = document.createElement('div');
-        category.className = 'category';
-        category.textContent = item.category;
+        card.appendChild(image);
+        card.appendChild(content);
 
-        const title = document.createElement('h2');
-        title.className = 'card-title';
-        title.textContent = item.title;
-
-        const excerpt = document.createElement('p');
-        excerpt.className = 'card-excerpt';
-        excerpt.textContent = item.excerpt;
-
-        const meta = document.createElement('div');
-        meta.className = 'card-meta';
-
-        const author = document.createElement('span');
-        author.textContent = `By ${item.author}`;
-
-        const date = document.createElement('span');
-        date.textContent = item.date;
-
-        meta.append(author, date);
-        content.append(category, title, excerpt, meta);
-        card.append(image, content);
-
-        card.addEventListener('click', () => openReader(item.id));
-        card.addEventListener('keydown', event => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            openReader(item.id);
+        card.addEventListener('click', () => openArticle(item));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openArticle(item);
           }
         });
 
@@ -942,114 +953,20 @@
       });
     }
 
-    function openReader(id) {
-      const article = articles.find(item => item.id === id);
-      if (!article) return;
-
-      document.getElementById('reader-category').textContent = article.category;
-      document.getElementById('reader-title').textContent = article.title;
-      document.getElementById('reader-author').textContent = `By ${article.author}`;
-      document.getElementById('reader-date').textContent = article.date;
-      document.getElementById('reader-body').textContent = article.content;
-
-      openModal('reader-modal');
-    }
-
-    function openModal(id) {
-      document.getElementById(id).classList.add('active');
-      document.body.style.overflow = 'hidden';
-      document.querySelector(`#${id} .modal-close`)?.focus();
+    function openArticle(item) {
+      document.getElementById('reader-category').textContent = item.category;
+      document.getElementById('reader-title').textContent = item.title;
+      document.getElementById('reader-author').textContent = `By ${item.author}`;
+      document.getElementById('reader-date').textContent = item.date;
+      document.getElementById('reader-body').textContent = item.content;
+      document.getElementById('reader-modal').classList.add('active');
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('active');
-      document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        closeModal('reader-modal');
-      }
-    });
-
-    // ----------------------------------
-    // FUN QUIZ
-    // ----------------------------------
-
-    document.querySelectorAll('#quiz-options button').forEach(button => {
-      button.addEventListener('click', () => {
-        const result = document.getElementById('quiz-result');
-        const isCorrect = button.dataset.correct === 'true';
-
-        document.querySelectorAll('#quiz-options button').forEach(option => {
-          option.style.backgroundColor = '';
-          option.style.borderColor = 'var(--border-color)';
-        });
-
-        if (isCorrect) {
-          button.style.backgroundColor = 'var(--accent-light)';
-          button.style.borderColor = 'var(--accent-green)';
-          result.style.color = 'var(--accent-green)';
-          result.textContent = '🎉 Correct! Hydropower generates more electricity worldwide than any other renewable source.';
-        } else {
-          button.style.backgroundColor = 'rgba(220,53,69,0.12)';
-          button.style.borderColor = '#dc3545';
-          result.style.color = '#dc3545';
-          result.textContent = 'Not quite! Try another answer.';
-        }
-      });
-    });
-
-    // ----------------------------------
-    // E-BOARD SWIPE CAROUSEL
-    // Native touch scrolling works on phones.
-    // Buttons scroll one card at a time.
-    // ----------------------------------
-
-    const eswTrack = document.getElementById('esw-track');
-    const eswPrev = document.getElementById('esw-prev');
-    const eswNext = document.getElementById('esw-next');
-
-    function scrollESW(direction) {
-      if (!eswTrack) return;
-
-      const card = eswTrack.querySelector('.esw-person');
-      if (!card) return;
-
-      const styles = getComputedStyle(eswTrack);
-      const gap = parseFloat(styles.columnGap) || 0;
-
-      eswTrack.scrollBy({
-        left: direction * (card.getBoundingClientRect().width + gap),
-        behavior: 'smooth'
-      });
-    }
-
-    if (eswPrev) eswPrev.addEventListener('click', () => scrollESW(-1));
-    if (eswNext) eswNext.addEventListener('click', () => scrollESW(1));
-
-    // ----------------------------------
-    // LIGHT AND DARK MODE
-    // ----------------------------------
-
-    const themeToggle = document.getElementById('theme-toggle');
-
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.body.getAttribute('data-theme') === 'dark';
-
-      if (isDark) {
-        document.body.removeAttribute('data-theme');
-        themeToggle.textContent = '🌙 Dark';
-      } else {
-        document.body.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️ Light';
-      }
-    });
-
-    // ----------------------------------
-    // INITIALIZE
-    // ----------------------------------
-
+    // Initial load
     renderArticles(articles);
   </script>
 </body>
