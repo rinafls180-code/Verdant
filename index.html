@@ -465,6 +465,35 @@
     .ideas-button:hover { opacity: 0.85; transform: translateY(-2px); }
     .ideas-button span { margin-left: 8px; }
     .ideas-container .ideas-note { font-size: 12px; opacity: 0.7; margin-top: 20px; margin-bottom: 0; }
+
+
+    /* Interactive STEM crossword */
+    .crossword-box { margin-top: 1.5rem; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-primary); }
+    .crossword-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
+    .crossword-heading h3 { font-family:var(--font-serif); font-size:1.35rem; }
+    .crossword-heading p { color:var(--text-muted); font-size:.88rem; }
+    .crossword-toolbar { display:flex; flex-wrap:wrap; gap:.55rem; margin:1rem 0; }
+    .crossword-layout { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(220px,.85fr); gap:1.25rem; align-items:start; }
+    .crossword-grid-wrap { overflow:auto; padding:0 0 .5rem; overscroll-behavior-x:contain; }
+    .crossword-grid { display:grid; grid-template-columns:repeat(25, minmax(23px, 1fr)); gap:2px; width:max-content; max-width:none; margin:0 auto; }
+    .crossword-cell { width:clamp(23px, 3.2vw, 34px); height:clamp(23px, 3.2vw, 34px); position:relative; }
+    .crossword-cell.block { background:#23362a; border-radius:2px; }
+    [data-theme="dark"] .crossword-cell.block { background:#060a07; }
+    .crossword-cell input { display:block; width:100%; height:100%; border:1px solid #8f9b90; border-radius:2px; padding:0; text-align:center; text-transform:uppercase; background:var(--bg-surface); color:var(--text-main); font-weight:700; font-size:clamp(.72rem, 2.4vw, 1rem); outline:none; }
+    .crossword-cell input:focus { border:2px solid var(--accent-green); background:var(--accent-light); }
+    .crossword-cell input.correct { background:#dff1d7; border-color:#31843a; color:#173d2b; }
+    [data-theme="dark"] .crossword-cell input.correct { background:#24412a; color:#eff9ed; }
+    .crossword-number { position:absolute; top:1px; left:2px; z-index:1; font-size:8px; line-height:1; color:var(--text-main); pointer-events:none; }
+    .crossword-clues { display:grid; grid-template-columns:1fr; gap:.8rem; }
+    .crossword-clue-group { padding:.9rem; border:1px solid var(--border-color); border-radius:8px; background:var(--bg-surface); }
+    .crossword-clue-group h4 { margin-bottom:.45rem; color:var(--accent-green); text-transform:uppercase; font-size:.75rem; letter-spacing:.08em; }
+    .crossword-clue-list { list-style:none; display:grid; gap:.3rem; }
+    .crossword-clue-list button { width:100%; padding:.35rem .4rem; background:transparent; border:0; color:var(--text-main); text-align:left; cursor:pointer; border-radius:5px; font-size:.78rem; line-height:1.45; }
+    .crossword-clue-list button:hover,.crossword-clue-list button.selected { background:var(--accent-light); }
+    .crossword-clue-list strong { color:var(--accent-green); margin-right:.25rem; }
+    #crossword-status { min-height:1.5em; margin:.5rem 0 0; color:var(--text-muted); font-size:.88rem; }
+    @media(max-width:760px) { .crossword-layout { grid-template-columns:1fr; } .crossword-grid { margin:0; } .crossword-clue-group { padding:.75rem; } }
+
   </style>
 </head>
 
@@ -559,6 +588,26 @@
         </div>
         <p id="quiz-result" aria-live="polite"></p>
       </div>
+
+      <section class="crossword-box" aria-labelledby="crossword-title">
+        <div class="crossword-heading">
+          <div><h3 id="crossword-title">STEM Crossword</h3>
+          <p>College-level science and technology. Select a clue, then type one letter per square.</p></div>
+        </div>
+        <div class="crossword-toolbar">
+          <button class="btn btn-primary" id="crossword-check" type="button">Check answers</button>
+          <button class="btn" id="crossword-reveal" type="button">Reveal answers</button>
+          <button class="btn" id="crossword-reset" type="button">Clear grid</button>
+        </div>
+        <div class="crossword-layout">
+          <div class="crossword-grid-wrap"><div id="crossword-grid" class="crossword-grid" role="group" aria-label="STEM crossword grid"></div></div>
+          <div class="crossword-clues">
+            <div class="crossword-clue-group"><h4>Across →</h4><ol id="crossword-across" class="crossword-clue-list"></ol></div>
+            <div class="crossword-clue-group"><h4>Down ↓</h4><ol id="crossword-down" class="crossword-clue-list"></ol></div>
+          </div>
+        </div>
+        <p id="crossword-status" aria-live="polite">Choose a clue to begin.</p>
+      </section>
     </section>
 
     <!-- INSIDE ESW -->
@@ -1164,6 +1213,88 @@ And to close our conversation, Samuel left a reflection directed at MDC students
     // ----------------------------------
 
     renderArticles(articles);
+
+
+    // ----------------------------------
+    // INTERACTIVE STEM CROSSWORD
+    // ----------------------------------
+    const crosswordEntries = [
+      { answer:'EVOLUTION', dir:'D', row:0, col:15, clue:'The change in inherited characteristics of populations over generations.' },
+      { answer:'GENETICS', dir:'D', row:3, col:3, clue:'The study of heredity and variation in living organisms.' },
+      { answer:'COSMOLOGY', dir:'D', row:3, col:17, clue:'The scientific study of the origin, structure, and evolution of the universe.' },
+      { answer:'ENCRYPTION', dir:'D', row:8, col:12, clue:'The process of encoding information to protect it from unauthorized access.' },
+      { answer:'ELASTICITY', dir:'D', row:10, col:4, clue:'The ability of a material to return to its original shape after deformation.' },
+      { answer:'ALGORITHM', dir:'A', row:15, col:7, clue:'A step-by-step procedure for solving a problem or performing a computation.' },
+      { answer:'SEMICONDUCTOR', dir:'A', row:10, col:3, clue:'A material whose electrical conductivity can be controlled.' },
+      { answer:'NANOTECHNOLOGY', dir:'A', row:8, col:7, clue:'The manipulation of matter at the atomic and molecular scale.' },
+      { answer:'QUANTUM', dir:'A', row:14, col:0, clue:'A discrete quantity of energy associated with a physical system.' },
+      { answer:'CALCULUS', dir:'A', row:3, col:17, clue:'The branch of mathematics studying rates of change and accumulation.' },
+      { answer:'DYNAMICS', dir:'A', row:12, col:1, clue:'The study of forces and their effects on motion.' },
+      { answer:'ENTROPY', dir:'A', row:0, col:15, clue:'The measure of energy dispersal in a thermodynamic system.' }
+    ];
+    const crosswordRows=20, crosswordCols=25;
+    const crosswordCells=new Map();
+    let activeCrosswordEntry=null;
+    const crosswordKey=(r,c)=>`${r},${c}`;
+    crosswordEntries.forEach(entry=>{
+      entry.cells=[];
+      [...entry.answer].forEach((letter,i)=>{
+        const r=entry.row+(entry.dir==='D'?i:0), c=entry.col+(entry.dir==='A'?i:0), key=crosswordKey(r,c);
+        if(!crosswordCells.has(key)) crosswordCells.set(key,{letter,entries:[]});
+        const cell=crosswordCells.get(key); cell.entries.push(entry); entry.cells.push(key);
+      });
+    });
+    const crosswordStarts=new Map();
+    for(let r=0;r<crosswordRows;r++) for(let c=0;c<crosswordCols;c++){
+      const cell=crosswordCells.get(crosswordKey(r,c)); if(!cell) continue;
+      const startsAcross=cell.entries.some(e=>e.dir==='A'&&e.row===r&&e.col===c);
+      const startsDown=cell.entries.some(e=>e.dir==='D'&&e.row===r&&e.col===c);
+      if(startsAcross||startsDown) crosswordStarts.set(crosswordKey(r,c),crosswordStarts.size+1);
+    }
+    const crosswordGrid=document.getElementById('crossword-grid');
+    const crosswordInputs=new Map();
+    for(let r=0;r<crosswordRows;r++) for(let c=0;c<crosswordCols;c++){
+      const key=crosswordKey(r,c), cellData=crosswordCells.get(key), cell=document.createElement('div');
+      cell.className='crossword-cell'+(cellData?'':' block');
+      if(cellData){
+        const n=crosswordStarts.get(key); if(n){const number=document.createElement('span');number.className='crossword-number';number.textContent=n;cell.appendChild(number);}
+        const input=document.createElement('input'); input.type='text'; input.maxLength=1; input.autocomplete='off'; input.spellcheck=false;
+        input.setAttribute('aria-label',`${n?`Clue ${n}, `:''}row ${r+1}, column ${c+1}`); input.dataset.key=key;
+        input.addEventListener('focus',()=>{ if(!activeCrosswordEntry||!cellData.entries.includes(activeCrosswordEntry)) selectCrosswordEntry(cellData.entries[0]); });
+        input.addEventListener('input',()=>{input.value=input.value.replace(/[^a-z]/gi,'').slice(-1).toUpperCase(); if(input.value) focusNextCrosswordCell(key,1); });
+        input.addEventListener('keydown',event=>{
+          const offsets={ArrowRight:[0,1],ArrowLeft:[0,-1],ArrowDown:[1,0],ArrowUp:[-1,0]};
+          if(offsets[event.key]){event.preventDefault();const [dr,dc]=offsets[event.key]; let rr=r+dr,cc=c+dc;while(rr>=0&&rr<crosswordRows&&cc>=0&&cc<crosswordCols){const next=crosswordInputs.get(crosswordKey(rr,cc));if(next){next.focus();break;}rr+=dr;cc+=dc;}}
+          else if(event.key==='Backspace'&&!input.value)focusNextCrosswordCell(key,-1);
+          else if(event.key===' '){event.preventDefault();selectCrosswordEntry(cellData.entries.find(e=>e!==activeCrosswordEntry)||cellData.entries[0]);}
+        });
+        cell.appendChild(input); crosswordInputs.set(key,input);
+      }
+      crosswordGrid.appendChild(cell);
+    }
+    function focusNextCrosswordCell(key,step){if(!activeCrosswordEntry)return;const i=activeCrosswordEntry.cells.indexOf(key);for(let j=i+step;j>=0&&j<activeCrosswordEntry.cells.length;j+=step){const el=crosswordInputs.get(activeCrosswordEntry.cells[j]);if(el){el.focus();return;}}}
+    function selectCrosswordEntry(entry){
+      if(!entry)return; activeCrosswordEntry=entry;
+      document.querySelectorAll('.crossword-clue-list button').forEach(b=>b.classList.toggle('selected',b.dataset.answer===entry.answer));
+      document.getElementById('crossword-status').textContent=`${entry.number} ${entry.dir==='A'?'Across':'Down'} · ${entry.answer.length} letters`;
+    }
+    crosswordEntries.forEach(entry=>{
+      const n=crosswordStarts.get(crosswordKey(entry.row,entry.col));entry.number=n;
+      const li=document.createElement('li'),button=document.createElement('button');button.type='button';button.dataset.answer=entry.answer;
+      button.innerHTML=`<strong>${n}.</strong> ${entry.clue} <span>(${entry.answer.length} letters)</span>`;
+      button.addEventListener('click',()=>{selectCrosswordEntry(entry);crosswordInputs.get(entry.cells[0])?.focus();});
+      document.getElementById(entry.dir==='A'?'crossword-across':'crossword-down').appendChild(li).appendChild(button);
+    });
+    document.getElementById('crossword-check').addEventListener('click',()=>{
+      let filled=0,correct=0;
+      crosswordInputs.forEach((input,key)=>{const expected=crosswordCells.get(key).letter;const value=input.value.toUpperCase();input.classList.toggle('correct',!!value&&value===expected);if(value){filled++;if(value===expected)correct++;}});
+      const status=document.getElementById('crossword-status');
+      if(filled===crosswordCells.size&&correct===crosswordCells.size)status.textContent='Excellent! You solved the STEM crossword.';
+      else status.textContent=`${correct} of ${crosswordCells.size} filled squares are correct${filled<crosswordCells.size?`; ${crosswordCells.size-filled} still blank`:''}. Keep going!`;
+    });
+    document.getElementById('crossword-reveal').addEventListener('click',()=>{crosswordInputs.forEach((input,key)=>{input.value=crosswordCells.get(key).letter;input.classList.add('correct');});document.getElementById('crossword-status').textContent='Answers revealed. Use Clear grid to try again.';});
+    document.getElementById('crossword-reset').addEventListener('click',()=>{crosswordInputs.forEach(input=>{input.value='';input.classList.remove('correct');});document.getElementById('crossword-status').textContent='Grid cleared. Choose a clue to begin.';});
+
   </script>
 </body>
 </html>
