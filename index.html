@@ -211,11 +211,6 @@
     .section-title { font-family: var(--font-serif); color: var(--accent-green); margin-bottom: 0.5rem; font-size: 1.8rem; }
     .section-description { color: var(--text-muted); margin-bottom: 1.5rem; }
 
-    .quiz-box { background: var(--bg-primary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); }
-    .quiz-options { display: flex; flex-direction: column; align-items: stretch; gap: 0.6rem; margin-top: 1rem; }
-    .quiz-options .btn { justify-content: flex-start; text-align: left; border-radius: 8px; padding: 0.75rem; }
-    #quiz-result { margin-top: 1rem; font-weight: 600; }
-
     /* Inside ESW */
 
     .esw-page { animation: eswFadeIn 0.35s ease; }
@@ -576,18 +571,6 @@
         Test your knowledge with this week's trivia!
       </p>
 
-      <div class="quiz-box">
-        <h3 style="font-size:1.1rem;">
-          Which renewable energy source produces the most electricity worldwide?
-        </h3>
-        <div class="quiz-options" id="quiz-options">
-          <button class="btn" type="button" data-correct="false">A) Solar power</button>
-          <button class="btn" type="button" data-correct="false">B) Wind energy</button>
-          <button class="btn" type="button" data-correct="true">C) Hydropower</button>
-          <button class="btn" type="button" data-correct="false">D) Geothermal energy</button>
-        </div>
-        <p id="quiz-result" aria-live="polite"></p>
-      </div>
 
       <section class="crossword-box" aria-labelledby="crossword-title">
         <div class="crossword-heading">
@@ -596,7 +579,6 @@
         </div>
         <div class="crossword-toolbar">
           <button class="btn btn-primary" id="crossword-check" type="button">Check answers</button>
-          <button class="btn" id="crossword-reveal" type="button">Reveal answers</button>
           <button class="btn" id="crossword-reset" type="button">Clear grid</button>
         </div>
         <div class="crossword-layout">
@@ -934,15 +916,15 @@ And to close our conversation, Samuel left a reflection directed at MDC students
       },
       {
         id: 5,
-        title: "Student Spotlight: Jhonalbert Mora – Learning to Slow Down Without Giving Up",
+        title: "Jhonalbert Mora: Learning to Slow Down Without Giving Up",
         category: "Student Spotlight",
         author: "Isabel Hernandez",
-        date: "Nov 9, 2026",
-        image: "",
-        imageCredit: "",
-        excerpt: "Meet Samuel Montalvo Brousett, an Honors College student balancing three academic programs, leadership in ESW, and a passion for genetic engineering.",
-        content: 'Article text coming soon'
-    }
+        date: "Nov 24, 2026",
+        image: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20650%22%3E%3Crect%20width%3D%221200%22%20height%3D%22650%22%20fill%3D%22%23e8efe6%22%2F%3E%3Ccircle%20cx%3D%22600%22%20cy%3D%22245%22%20r%3D%22112%22%20fill%3D%22%23cbdac8%22%2F%3E%3Cpath%20d%3D%22M370%20590c20-145%20110-220%20230-220s210%2075%20230%20220%22%20fill%3D%22%23cbdac8%22%2F%3E%3Ctext%20x%3D%22600%22%20y%3D%22615%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2230%22%20fill%3D%22%232d5a27%22%3EPHOTO%20COMING%20SOON%3C%2Ftext%3E%3C%2Fsvg%3E",
+        imageCredit: "Portrait of Jhonalbert Mora coming soon.",
+        excerpt: "A first-place NASA Space Apps Challenge winner and Physics major reflects on ambition, exhaustion, and why slowing down can help you keep moving forward.",
+        content: "Jhonalbert Mora is a former student of the Miami Dade College Honors College, a prestigious program with special admission requirements and a rigorous academic curriculum. He is also a first-place winner of the NASA Space Apps Challenge and a Physics major. But beyond these achievements, his story is about learning something that can be difficult for ambitious students to accept: sometimes, moving forward means slowing down.\n\nAs a curious student, Jhonalbert took several classes in high school, including AP Physics and AP Music Theory. He also explored music through guitar and choir. He was interested in a little bit of everything, but Physics eventually caught his attention and gave him something he wanted to dedicate his life to.\n\nIn high school, he met Javier Rivera, a Physics teacher with whom he would later take Physics Honors and AP Physics. Through those classes, Jhonalbert discovered his passion for the subject. Why? Because Physics was the answer. It explained why things happen, why you feel a force pushing back when you push something, why a pendulum swings back after you move it, and why you feel the weight of gravity on your shoulders. To him, Physics was the answer to the why behind everything. That curiosity helped him discover his interest in the subject and eventually choose his major.\n\nHis immigration status made him doubt whether he could receive a scholarship through the Honors College. However, a friend encouraged him to apply, explaining that other students in similar situations had also been able to join the program. His friend told him, “You have a chance in front of you. Try it. What’s the worst that could happen?” Jhonalbert decided to give it a try, and he received the scholarship.\n\nJhonalbert remembers his time in the Honors College almost like a dream, something that feels as though it happened and, at the same time, feels like it never happened. He lived in Homestead and attended classes at the Padrón Campus, which meant long days and difficult commutes. His father would drive him in the mornings, and he would usually return home by bus at night. Sometimes, his father could pick him up, but transportation still took up a significant part of his day.\n\nAt first, college felt exciting. He was motivated, made friends, and felt that everything was going well. But as time passed, everything he had committed to started piling up on his shoulders, and the time he had was no longer enough. He decided to take Calculus I, even though many people advised him against it because of how difficult it was. He believed he could pass the class, but his exam grades were not what he expected. It became what he describes as a reality check.\n\nJhonalbert realized he had taken on too much and put too many responsibilities on himself. Still, he felt that he had to keep going because he had already committed to everything. He would wake up at four in the morning, arrive on campus around five-thirty or six, and stay until the evening. His bus ride home could take up to three hours, and once he arrived, he still had assignments to complete. His commute was not always safe or predictable, either. Someone once tried to rob him, and on another occasion, he fell asleep on the bus and ended up at the last station, having to find his way back.\n\nHis responsibilities continued to grow. His family was also experiencing financial difficulties, and his parents suggested that getting a job might help. So he started working while studying, adding another responsibility to an already demanding schedule. Looking back, he describes how he pushed himself too far, almost as if he had overcooked himself, much more than necessary.\n\nDespite everything, he does not remember his time in the Honors College with hatred or hopelessness. He remembers it as something good that he experienced, even if it was not always easy. It was a period he was able to recover from, and it also helped improve his relationship with his parents. Although it was not his best memory, it remained meaningful to him.\n\nDuring his time at MDC, his passion for Physics continued to grow. At first, he did not know exactly what he wanted to do with it. But he saw people going to universities like MIT and Princeton, as well as people going on to work at NASA. Seeing those opportunities so close to him made him think, “If they could do it, I can too.”\n\nAt the Padrón Campus, he also met people who helped him understand how to pursue his goals. Maybe they did not always give him the best guidance, but everyone did what they could to help him. These experiences allowed him to see what was possible through STEM and encouraged him to keep pursuing Physics.\n\nThat interest eventually led him to participate in the NASA Space Apps Challenge with a team. Their project, Meteor Madness Simulator, was a website that simulated meteorite impacts based on factors such as the meteorite’s size, the angle at which it fell, and the location of the impact. The website calculated potential damage, including seismic activity and temperature changes, showing what could happen when a meteorite strikes an area.\n\nJhonalbert describes his experience with the team as a good one. They had some disagreements, but everything worked out in the end. They did not participate expecting to win. They wanted to gain experience, have fun, and do their best. In the end, they won first place. His role was to present the idea in an interesting way that would catch the judges’ attention and help them understand what made their project different from the others. What began as an opportunity to learn became an achievement he could be proud of.\n\nYet, even as he pursued these opportunities, Jhonalbert eventually realized he could not keep going at the same pace. He was exhausted, and something had to change. To explain what that moment felt like, he uses the example of a storm.\n\nImagine you are driving through a very strong storm. The road is in terrible condition, full of potholes, and the car you are driving is not in good shape either. You have three options. You can stop completely and wait for the storm to pass, even though you do not know when it will end and do not have enough food to wait for twenty-four hours. You can accelerate even more because you think your destination is closer than you realize. You decide to give it one last push, but the potholes keep coming, the car gets into worse condition, and the storm keeps getting stronger.\n\nOr you can choose a third option: slow down. You lower your speed to a level that allows you to avoid the potholes without putting too much pressure on the car. You are not stopping completely or sitting around doing nothing. You are still moving forward, just in a more controlled way.\n\nJhonalbert says his own vehicle did not have the best tires, transmission, or windshield. Even so, he chose the second option. He kept pushing himself, believing he needed to continue at the same pace. Eventually, he experienced another reality check and realized that he needed to take things at his own pace instead of continuing at a rhythm that was no longer working for him.\n\nWhen he was told that he could no longer continue in the Honors College, it was something he had already expected might happen eventually. He remembers going to the office of the director, María Maduro, who told him the news in a warm and gentle voice. It hurt because he liked being there. But, surprisingly, it also brought him happiness and peace because, in a way, he felt free again.\n\nLeaving the Honors College taught him that going beyond his limits did not necessarily make him a better version of himself. It also helped him understand the difference between hitting the brakes and slowing down. Braking means stopping completely, while slowing down means reducing your speed but continuing toward your goal.\n\nAfter leaving the Honors College, he began taking easier classes and changed campuses to be closer to home and avoid those long trips. But he did not abandon his dream. He is still pursuing his goal of graduating with a major in Physics, just at a more comfortable pace that does not exhaust him. His path changed, but his goal remained the same.\n\nLooking toward the future, Jhonalbert hopes to use his knowledge of Physics in different ways. He might conduct research, teach Physics, or work in a field where he can use his knowledge to create new things. He also wants to help people who feel lost find a foundation, just as his high school teacher, Javier Rivera, helped him find his own path.\n\nAt the end of our interview, I asked Jhonalbert if he had any advice for STEM students. His answer was simple: know yourself and find your own pace. I believe this advice is especially important for STEM students because their classes tend to be more rigorous, although I think it applies to everyone.\n\nHe believes students should understand their limits, how far they can push themselves, and how close they are to reaching those limits. They should not look for perfection, but comfort. He does not mean the kind of comfort that comes from using artificial intelligence to complete assignments or choosing classes they can pass with their eyes closed. He means finding a balance that allows them to do their best without overexploiting themselves.\n\nFor Jhonalbert, the important thing is to find an environment that challenges you without exhausting you. Depending on the situation, you might push yourself a little further or recognize that you have reached your limit.\n\nJhonalbert is still pursuing Physics, still thinking about his future, and still working toward his goals. What changed was not what he wanted to achieve, but how he chose to get there. His experience reminds us that ambition does not have to mean pushing ourselves until we have nothing left to give. Sometimes, the best way to keep moving forward is to recognize when our current pace is no longer working. After all, the goal is not just to reach your destination, but to make sure you can keep going without losing yourself along the way."
+      }
     ];
 
     let articles = defaultArticles;
@@ -1108,34 +1090,6 @@ And to close our conversation, Samuel left a reflection directed at MDC students
     });
 
     // ----------------------------------
-    // FUN QUIZ
-    // ----------------------------------
-
-    document.querySelectorAll('#quiz-options button').forEach(button => {
-      button.addEventListener('click', () => {
-        const result = document.getElementById('quiz-result');
-        const isCorrect = button.dataset.correct === 'true';
-
-        document.querySelectorAll('#quiz-options button').forEach(option => {
-          option.style.backgroundColor = '';
-          option.style.borderColor = 'var(--border-color)';
-        });
-
-        if (isCorrect) {
-          button.style.backgroundColor = 'var(--accent-light)';
-          button.style.borderColor = 'var(--accent-green)';
-          result.style.color = 'var(--accent-green)';
-          result.textContent = '🎉 Correct! Hydropower generates more electricity worldwide than any other renewable source.';
-        } else {
-          button.style.backgroundColor = 'rgba(220,53,69,0.12)';
-          button.style.borderColor = '#dc3545';
-          result.style.color = '#dc3545';
-          result.textContent = 'Not quite! Try another answer.';
-        }
-      });
-    });
-
-    // ----------------------------------
     // E-BOARD SWIPE CAROUSEL
     // Native touch scrolling works on phones.
     // Buttons scroll one card at a time.
@@ -1292,7 +1246,6 @@ And to close our conversation, Samuel left a reflection directed at MDC students
       if(filled===crosswordCells.size&&correct===crosswordCells.size)status.textContent='Excellent! You solved the STEM crossword.';
       else status.textContent=`${correct} of ${crosswordCells.size} filled squares are correct${filled<crosswordCells.size?`; ${crosswordCells.size-filled} still blank`:''}. Keep going!`;
     });
-    document.getElementById('crossword-reveal').addEventListener('click',()=>{crosswordInputs.forEach((input,key)=>{input.value=crosswordCells.get(key).letter;input.classList.add('correct');});document.getElementById('crossword-status').textContent='Answers revealed. Use Clear grid to try again.';});
     document.getElementById('crossword-reset').addEventListener('click',()=>{crosswordInputs.forEach(input=>{input.value='';input.classList.remove('correct');});document.getElementById('crossword-status').textContent='Grid cleared. Choose a clue to begin.';});
 
   </script>
